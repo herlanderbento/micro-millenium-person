@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "type": "object",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    // "paths": {
+    //   "#seedwork/*": [
+    //     "./@seedwork/*"
+    //   ],
+    //   "@person/*": [
+    //     "./@person/*"
+    //   ],
+    // },
+    "outDir": "./dist"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+}
