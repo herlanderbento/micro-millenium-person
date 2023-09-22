@@ -14,12 +14,14 @@ export class PersonRedisRepository implements Pick<IPersonRepository, "findAll">
     const cachedData = await redisClient.get(redisKey);
 
     if (cachedData) {
+      console.log("cachedData")
       return parseJSON(cachedData);
     }
 
     const entities = await prismaClient.person.findMany();
 
     await redisClient.setex(redisKey, 15, convertToJSON(entities));
+    console.log("Data")
 
     return entities.map(PersonPrismaMapper.toEntity);
   }
