@@ -1,32 +1,32 @@
-import { IEducationRepository, Education } from "../../domain";
-import { default as IUseCase } from "../../../@seedwork/application/use-cases";
+import { IEducationRepository, Education } from '../../domain';
+import { default as IUseCase } from '../../../@seedwork/application/use-cases';
 import {
   EducationOutputMapper,
   EducationProps,
-} from "../dtos/education-output";
-import { IPersonRepository, PersonId } from "../../../person/domain";
-import { NotFoundError } from "../../../@seedwork/domain";
+} from '../dtos/education-output';
+import { IPersonRepository, PersonId } from '../../../person/domain';
+import { NotFoundError } from '../../../@seedwork/domain';
 
 export class CreateEducationUseCase
   implements IUseCase<CreateEducationInput, CreateEducationOutput>
 {
   constructor(
     private educationRepository: IEducationRepository,
-    private miraRepository: IPersonRepository
+    private personRepository: IPersonRepository
   ) {}
 
   async execute(input: CreateEducationInput): Promise<CreateEducationOutput> {
-    // const miraFound = await this.miraRepository.findById(input.PersonId);
+    const person = await this.personRepository.findById(input.personId);
 
-    // if (!miraFound) {
-    //   throw new NotFoundError("Mira not found");
-    // }
+    if (!person) {
+      throw new NotFoundError('Person not found');
+    }
 
-    const entity = Education.create(input);
+    const education = Education.create(input);
 
-    await this.educationRepository.create(entity);
+    await this.educationRepository.create(education);
 
-    return EducationOutputMapper.toOutput(entity);
+    return EducationOutputMapper.toOutput(education);
   }
 }
 
