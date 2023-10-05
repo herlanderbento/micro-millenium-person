@@ -1,9 +1,9 @@
-import { FastifyRequest, FastifyReply } from "fastify";
-import { makeGetAllPersonUseCase } from "../../../../@core/src/person/application";
+import { FastifyRequest, FastifyReply } from 'fastify';
+import { GetAllPersonsUseCaseFactory } from '../../../../core/src/person/application';
 
 export class GetAllPersonsController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const GetAllPersonUseCase = makeGetAllPersonUseCase();
+    const GetAllPersonUseCase = GetAllPersonsUseCaseFactory.create();
 
     const output = await GetAllPersonUseCase.execute();
 

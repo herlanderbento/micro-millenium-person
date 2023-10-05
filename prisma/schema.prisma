@@ -1,5 +1,5 @@
 // This is your Prisma schema file,
-// learn more about it in the docs https//pris.ly/d/prisma-schema
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -12,15 +12,15 @@ datasource db {
 
 model Person {
   id               String   @id
-  userId           String
+  userId           String?
   gender           String
-  location         String
+  address          String
   birthdate        DateTime
   biography        String?
   shareableSection String?
   isOpenToWork     Boolean?
   isFreelancer     Boolean?
-  image            String?
+  avatar           String?
   createdAt        DateTime
   updatedAt        DateTime
 }

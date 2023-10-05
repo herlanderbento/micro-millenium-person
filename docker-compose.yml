@@ -5,9 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: micro_mira_app
+    container_name: micro_millenium_app
     env_file:
       - .env
+      - .env.test
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public
     volumes:
@@ -16,12 +17,13 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - micro_mira_db
-      - micro_mira_redis
+      - micro_millenium_db
+      - micro_millenium_db_test
+      - micro_millenium_redis
 
-  micro_mira_db:
+  micro_millenium_db:
     image: postgres:9.4
-    container_name: micro_mira_db
+    container_name: micro_millenium_db
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -29,11 +31,23 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/micro_mira_db
+      - postgres_data:/var/lib/postgresql/micro_millenium_db
+    
+  micro_millenium_db_test:
+    image: postgres:9.4
+    container_name: micro_millenium_db_test
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_TEST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT_TEST}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/micro_millenium_db_test
   
-  micro_mira_redis:
+  micro_millenium_redis:
     image: bitnami/redis:latest
-    container_name: micro_mira_redis
+    container_name: micro_millenium_redis
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:

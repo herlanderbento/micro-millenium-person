@@ -1,30 +1,30 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-const GENDER = ["male", "female"] as const;
+const GENDER = ['male', 'female'] as const;
 
 export const createPersonBodySchemaValidation = z.object({
   userId: z
     .string({
-      required_error: "userId is required",
-      invalid_type_error: "userId must be a string",
+      required_error: 'userId is required',
+      invalid_type_error: 'userId must be a string',
     })
     .trim()
-    .min(1, { message: "userId is required" }),
+    .min(1, { message: 'userId is required' }),
   gender: z.enum(GENDER),
-  location: z
+  address: z
     .string({
-      required_error: "location is required",
-      invalid_type_error: "location must be a string",
+      required_error: 'address is required',
+      invalid_type_error: 'address must be a string',
     })
     .trim()
-    .min(1, { message: "location is required" }),
+    .min(1, { message: 'address is required' }),
   birthdate: z
     .string({
-      required_error: "birthdate is required",
+      required_error: 'birthdate is required',
       invalid_type_error: "That's not a date!",
     })
     .trim()
-    .min(1, { message: "birthdate is required" }),
+    .min(1, { message: 'birthdate is required' }),
   biography: z.string().optional(),
   shareableSection: z.string().optional(),
   isOpenToWork: z.boolean().optional(),
@@ -34,28 +34,39 @@ export const createPersonBodySchemaValidation = z.object({
 export const personIdSchemaValidation = z.object({
   id: z
     .string({
-      required_error: "userId is required",
-      invalid_type_error: "userId must be a string",
+      required_error: 'userId is required',
+      invalid_type_error: 'userId must be a string',
     })
     .trim()
-    .min(1, { message: "userId is required" }),
+    .min(1, { message: 'userId is required' }),
 });
 
 export const updatePersonBodySchemaValidation = z.object({
   gender: z.enum(GENDER),
-  location: z
+  address: z
     .string({
-      required_error: "location is required",
-      invalid_type_error: "location must be a string",
+      required_error: 'address is required',
+      invalid_type_error: 'address must be a string',
     })
     .trim()
-    .min(1, { message: "location is required" }),
-  birthdate: z.string({
-    required_error: "birthdate is required",
-    invalid_type_error: "That's not a date!",
-  })
-  .trim()
-  .min(1, { message: "birthdate is required" }),
+    .min(1, { message: 'address is required' }),
+  birthdate: z
+    .string({
+      required_error: 'birthdate is required',
+      invalid_type_error: "That's not a date!",
+    })
+    .trim()
+    .min(1, { message: 'birthdate is required' }),
   biography: z.string().optional(),
   shareableSection: z.string().optional(),
+});
+
+export const updatePersonAvatarBodySchemaValidation = z.object({
+  avatar: z
+    .string({
+      required_error: 'avatar is required',
+      invalid_type_error: 'avatar must be a string',
+    })
+    .trim()
+    .min(1, { message: 'avatar is required' }),
 });

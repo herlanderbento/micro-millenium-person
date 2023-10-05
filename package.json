@@ -4,20 +4,21 @@
   "description": "",
   "main": "index.js",
   "workspaces": [
-    "./src/@core",
+    "./src/core",
     "./src/fastify"
   ],
   "scripts": {
     "prestart:dev": "npm run build -w @mirantes/micro-mira",
     "start:dev": "npm run build:w -w @mirantes/micro-mira & npm run start:dev -w fastify",
-    "test": "jest"
+    "test": "dotenv -e .env.test -- jest -i --runInBand --detectOpenHandles --forceExit",
+    "test:force": "dotenv -e .env.test npm run test -- --runInBand --detectOpenHandles --forceExit",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "keywords": [],
   "author": "Mirantes",
   "license": "ISC",
   "dependencies": {
-    "ioredis": "^5.3.2",
-    "redis": "^4.6.8",
-    "zod": "^3.22.2"
+    "dotenv": "^16.3.1"
   }
 }
