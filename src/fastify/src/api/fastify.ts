@@ -4,7 +4,7 @@ import fastifySwaggerUi from '@fastify/swagger-ui'
 import fastifyCookie from '@fastify/cookie';
 import { miraRoutes } from './routes';
 import { ZodError } from 'zod';
-import { redisClient } from '../../../core/src/@seedwork/infra/redis/redis-client';
+import { redisClient } from '../../../core/src/shared/infra/redis/redis-client';
 
 const app = fastify();
 

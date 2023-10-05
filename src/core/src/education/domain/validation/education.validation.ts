@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from "class-validator";
 import { EducationProperties } from "../entities/education.entity";
-import ClassValidatorFields from "../../../@seedwork/domain/validators/class-validator-fields";
+import ClassValidatorFields from "../../../shared/domain/validators/class-validator-fields";
 import { PersonId } from "../../../person/domain";
 
 export class EducationRules {

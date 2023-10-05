@@ -1,6 +1,7 @@
-import { GenderType, IPersonRepository } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IPersonRepository } from '../../../domain';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import { PersonOutput, PersonOutputMapper } from '../common';
+import { UpdatePersonInput } from './update-person.input';
 
 export class UpdatePersonUseCase
   implements IUseCase<UpdatePersonInput, UpdatePersonOutput>
@@ -16,14 +17,5 @@ export class UpdatePersonUseCase
     return PersonOutputMapper.toOutput(entity);
   }
 }
-
-export type UpdatePersonInput = {
-  id: string;
-  gender: GenderType;
-  address: string;
-  birthdate: Date;
-  biography?: string;
-  shareableSection?: string;
-};
 
 export type UpdatePersonOutput = PersonOutput;

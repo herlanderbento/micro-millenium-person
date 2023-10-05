@@ -1,6 +1,6 @@
 import { Person } from '#person/domain';
 import { PersonInMemoryRepository } from '#person/infra';
-import { NotFoundError } from '#seedwork/domain';
+import { NotFoundError } from '#shared/domain';
 import { UpdatePersonAvatarUseCase } from '../update-person-avatar.use-case';
 
 describe('UpdatePersonAvatar Unit Tests', () => {

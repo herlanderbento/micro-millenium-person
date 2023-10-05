@@ -4,7 +4,7 @@ import {
   SearchResult,
   ISearchableRepository,
   IRedisRepository,
-} from "../../../@seedwork/domain/repository";
+} from "../../../shared/domain/repository";
 
 export type PersonFilter = string;
 

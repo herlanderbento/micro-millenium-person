@@ -1,4 +1,4 @@
-import { IUseCase } from '../../../../@seedwork/application';
+import { IUseCase } from '../../../../shared/application';
 import { IPersonRepository } from '../../../domain';
 import { PersonOutput, PersonOutputMapper } from '../common';
 import { UpdatePersonAvatarInput } from './update-person-avatar.input';

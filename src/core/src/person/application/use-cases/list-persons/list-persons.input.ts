@@ -1,5 +1,5 @@
 import { PersonFilter } from '../../../domain';
-import { SortDirection } from '../../../../@seedwork/domain';
+import { SortDirection } from '../../../../shared/domain';
 
 export type ListPersonsInput = {
   page?: number;

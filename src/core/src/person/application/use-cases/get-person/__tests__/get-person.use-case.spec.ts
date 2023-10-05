@@ -1,6 +1,6 @@
 import { Person } from '../../../../domain';
 import { PersonInMemoryRepository } from '../../../../infra';
-import { NotFoundError } from '../../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../../shared/domain';
 import { GetPersonUseCase } from '../get-person.use-case';
 
 describe('GetPersonUseCase Unit Tests', () => {

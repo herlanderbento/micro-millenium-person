@@ -3,7 +3,7 @@ import {
   RepositoryInterface,
   SearchParams,
   SearchResult,
-} from '../../../@seedwork/domain';
+} from '../../../shared/domain';
 import { Education, EducationId } from '../entities/education.entity';
 
 export type EducationFilter = string;

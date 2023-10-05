@@ -3,7 +3,7 @@ import {
   parseJSON,
   prismaClient,
   redisClient,
-} from "../../../../@seedwork/infra";
+} from "../../../../shared/infra";
 import { IPersonRepository, Person } from "../../../domain";
 import { PersonPrismaMapper } from "../prisma";
 

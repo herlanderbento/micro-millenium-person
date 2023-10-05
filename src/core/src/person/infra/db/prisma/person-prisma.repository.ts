@@ -5,9 +5,9 @@ import {
   PersonSearchParams,
   PersonSearchResult,
 } from '../../../domain';
-import { prismaClient } from '../../../../@seedwork/infra/prisma/prisma-client';
+import { prismaClient } from '../../../../shared/infra/prisma/prisma-client';
 import { PersonPrismaMapper } from './person-prisma.mapper';
-import { NotFoundError } from '../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../shared/domain';
 
 export class PersonPrismaRepository implements IPersonRepository {
   sortableFields: string[] = ['createdAt'];

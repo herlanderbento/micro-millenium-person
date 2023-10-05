@@ -1,6 +1,6 @@
 import { GenderType, Person } from '../../../../domain';
 import { PersonInMemoryRepository } from '../../../../infra';
-import { NotFoundError } from '../../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../../shared/domain';
 import { UpdatePersonUseCase } from '../update-person.use-case';
 
 describe('UpdatePersonUseCase Unit Tests', () => {

@@ -3,12 +3,12 @@ import {
   PersonSearchParams,
   PersonSearchResult,
 } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import {
   PaginationOutputDto,
   PaginationOutputMapper,
   SearchInputDto,
-} from '../../../../@seedwork/application';
+} from '../../../../shared/application';
 import { PersonOutput, PersonOutputMapper } from '../common';
 import { ListPersonsInput } from './list-persons.input';
 

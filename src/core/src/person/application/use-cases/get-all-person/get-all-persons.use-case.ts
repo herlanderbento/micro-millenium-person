@@ -1,5 +1,5 @@
 import { IPersonRepository } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import { PersonOutput } from '../common';
 
 export class GetAllPersonsUseCase

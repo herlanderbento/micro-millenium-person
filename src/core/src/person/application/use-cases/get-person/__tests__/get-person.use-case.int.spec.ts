@@ -1,9 +1,9 @@
 import { Person } from '../../../../domain';
 import { PersonPrismaRepository } from '../../../../infra';
-import { NotFoundError } from '../../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../../shared/domain';
 import { GetPersonUseCase } from '../get-person.use-case';
 import { PrismaClient } from '@prisma/client';
-import { setupPrismaTests } from '#seedwork/infra';
+import { setupPrismaTests } from '#shared/infra';
 
 describe('GetPersonUseCase Integration Tests', () => {
   const prismaService = new PrismaClient();

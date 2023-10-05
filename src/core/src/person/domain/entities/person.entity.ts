@@ -1,10 +1,10 @@
-import { AggregateRoot } from "../../../@seedwork/domain/entity/aggregate-root";
-import { UniqueEntityId } from "../../../@seedwork/domain/value-objects/unique-entity-id.vo";
-import { EntityValidationError } from "../../../@seedwork/domain/errors/validation-error";
-import { PersonValidatorFactory } from "../validation/person.validation";
-import { PersonFakeBuilder } from "./person-fake-builder";
+import { AggregateRoot } from '../../../shared/domain/entity/aggregate-root';
+import { UniqueEntityId } from '../../../shared/domain/value-objects/unique-entity-id.vo';
+import { EntityValidationError } from '../../../shared/domain/errors/validation-error';
+import { PersonValidatorFactory } from '../validation/person.validation';
+import { PersonFakeBuilder } from './person-fake-builder';
 
-export type GenderType = "male" | "female";
+export type GenderType = 'male' | 'female';
 
 export type PersonProperties = {
   userId: string;
@@ -24,10 +24,14 @@ export type PersonOutputJson = Required<{ id: string } & PersonProperties>;
 
 export class PersonId extends UniqueEntityId {}
 
-export class Person extends AggregateRoot<PersonId, PersonProperties, PersonOutputJson> {
+export class Person extends AggregateRoot<
+  PersonId,
+  PersonProperties,
+  PersonOutputJson
+> {
   constructor(public readonly props: PersonProperties, entityId?: PersonId) {
     super(props, entityId ?? new PersonId());
-    Person.validate(props)
+    Person.validate(props);
     this.biography = this.props.biography ?? null;
     this.shareableSection = this.props.shareableSection ?? null;
     this.isOpenToWork = this.props.isOpenToWork ?? true;
@@ -123,7 +127,7 @@ export class Person extends AggregateRoot<PersonId, PersonProperties, PersonOutp
   //   return Person;
   // }
 
-  update(props: Omit<PersonProperties, "userId" | "avatar">): void {
+  update(props: Omit<PersonProperties, 'userId' | 'avatar'>): void {
     Person.validate({
       ...this.props,
       gender: props.gender,
@@ -160,8 +164,8 @@ export class Person extends AggregateRoot<PersonId, PersonProperties, PersonOutp
     }
   }
 
-  static fake(){
-    return PersonFakeBuilder()
+  static fake() {
+    return PersonFakeBuilder();
   }
 
   activateForWork(): void {

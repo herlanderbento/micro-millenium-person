@@ -5,8 +5,8 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "#seedwork/*": [
-        "./@seedwork/*"
+      "#shared/*": [
+        "./shared/*"
       ],
       "#person/*": [
         "./person/*"

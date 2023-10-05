@@ -1,5 +1,5 @@
 import { IEducationRepository, Education } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import {
   EducationOutputMapper,
   EducationOutput,

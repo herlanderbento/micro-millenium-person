@@ -1,10 +1,10 @@
 import { IEducationRepository } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import {
   EducationOutputMapper,
   EducationOutput,
 } from '../common/education-output';
-import { NotFoundError } from '../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../shared/domain';
 import { UpdateEducationInput } from './update-education.input';
 
 export class UpdateEducationUseCase

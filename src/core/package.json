@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "imports": {
-    "@seedwork/domain": "./dist/@seedwork/domain/index.js",
-    "@seedwork/*": "./dist/@seedwork/*.js",
+    "shared/domain": "./dist/shared/domain/index.js",
+    "shared/*": "./dist/shared/*.js",
     "#person/domain": "./dist/person/domain/index.js",
     "#person/*": "./dist/person/*.js",
     "#education/domain": "./dist/education/domain/index.js",
     "#education/*": "./dist/education/*.js"
   },
   "exports": {
-    "./src/@seedwork/application": "./dist/@seedwork/application/index.js",
-    "./src/@seedwork/domain": "./dist/@seedwork/domain/index.js",
-    "./src/@seedwork/infra": "./dist/@seedwork/infra/index.js",
+    "./src/shared/application": "./dist/shared/application/index.js",
+    "./src/shared/domain": "./dist/shared/domain/index.js",
+    "./src/shared/infra": "./dist/shared/infra/index.js",
     "./src/person/application": "./dist/person/application/index.js",
     "./src/person/domain": "./dist/person/domain/index.js",
     "./src/person/infra": "./dist/person/infra/index.js",
@@ -24,14 +24,14 @@
   },
   "typesVersions": {
     ">=4.0": {
-      "@seedwork/application": [
-        "./dist/@seedwork/application/index.d.ts"
+      "shared/application": [
+        "./dist/shared/application/index.d.ts"
       ],
-      "@seedwork/domain": [
-        "./dist/@seedwork/domain/index.d.ts"
+      "shared/domain": [
+        "./dist/shared/domain/index.d.ts"
       ],
-      "@seedwork/infra": [
-        "./dist/@seedwork/infra/index.d.ts"
+      "shared/infra": [
+        "./dist/shared/infra/index.d.ts"
       ],
       "person/application": [
         "./dist/person/application/index.d.ts"

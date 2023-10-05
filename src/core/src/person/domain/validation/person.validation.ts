@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from "class-validator";
 import { PersonProperties, GenderType } from "../entities/person.entity";
-import ClassValidatorFields from "../../../@seedwork/domain/validators/class-validator-fields";
+import ClassValidatorFields from "../../../shared/domain/validators/class-validator-fields";
 
 export class PersonRules {
   @MaxLength(255)

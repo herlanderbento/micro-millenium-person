@@ -2,7 +2,7 @@ import { Education, EducationId } from '../../../domain';
 import {
   InMemorySearchableRepository,
   SortDirection,
-} from '../../../../@seedwork/domain';
+} from '../../../../shared/domain';
 import { IEducationRepository } from '../../../domain/repository';
 
 export class EducationInMemoryRepository

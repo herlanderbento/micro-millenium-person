@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { PersonPrismaRepository } from '../../../../infra';
 import { CreatePersonUseCase } from '../create-person.use-case';
-import { setupPrismaTests } from '#seedwork/infra';
+import { setupPrismaTests } from '#shared/infra';
 
 describe('CreatePersonUseCase Integration Tests', () => {
   const prismaService = new PrismaClient();

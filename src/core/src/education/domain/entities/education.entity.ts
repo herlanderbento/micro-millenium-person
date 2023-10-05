@@ -3,7 +3,7 @@ import {
   EntityValidationError,
   UniqueEntityId,
   AggregateRoot,
-} from '../../../@seedwork/domain';
+} from '../../../shared/domain';
 import { EducationValidatorFactory } from '../validation/education.validation';
 
 export type EducationProperties = {

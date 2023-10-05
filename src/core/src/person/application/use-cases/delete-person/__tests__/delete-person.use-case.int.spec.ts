@@ -1,7 +1,7 @@
 import { Person } from '../../../../domain';
 import { PersonPrismaRepository } from '../../../../infra';
-import { NotFoundError } from '../../../../../@seedwork/domain';
-import { prismaClient, setupPrismaTests } from '#seedwork/infra';
+import { NotFoundError } from '../../../../../shared/domain';
+import { prismaClient, setupPrismaTests } from '#shared/infra';
 import { PrismaClient } from '@prisma/client';
 import { DeletePersonUseCase } from '../delete-person.use-case';
 

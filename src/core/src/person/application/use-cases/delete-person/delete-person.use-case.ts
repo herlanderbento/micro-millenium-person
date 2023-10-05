@@ -1,6 +1,6 @@
 import { IPersonRepository } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
-import { NotFoundError } from '../../../../@seedwork/domain';
+import { IUseCase } from '../../../../shared/application/use-cases';
+import { NotFoundError } from '../../../../shared/domain';
 
 export class DeletePersonUseCase
   implements IUseCase<DeletePersonInput, DeletePersonOutput>

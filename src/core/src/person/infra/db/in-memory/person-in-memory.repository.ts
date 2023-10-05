@@ -1,6 +1,6 @@
 import { Person, PersonId, IPersonRepository } from '../../../domain';
-import { InMemorySearchableRepository } from '../../../../@seedwork/domain/repository/in-memory-repository';
-import { SortDirection } from '../../../../@seedwork/domain';
+import { InMemorySearchableRepository } from '../../../../shared/domain/repository/in-memory-repository';
+import { SortDirection } from '../../../../shared/domain';
 
 export class PersonInMemoryRepository
   extends InMemorySearchableRepository<Person, PersonId>

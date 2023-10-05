@@ -1,5 +1,5 @@
 import { Person, IPersonRepository } from '../../../domain';
-import { IUseCase } from '../../../../@seedwork/application/use-cases';
+import { IUseCase } from '../../../../shared/application/use-cases';
 import { PersonOutputMapper, PersonOutput } from '../common';
 import { CreatePersonInput } from './create-person.input';
 

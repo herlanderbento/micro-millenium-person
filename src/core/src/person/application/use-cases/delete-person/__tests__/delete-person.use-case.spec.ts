@@ -1,7 +1,7 @@
 import { Person } from '../../../../domain';
 import { PersonInMemoryRepository } from '../../../../infra';
 import { DeletePersonUseCase } from '../delete-person.use-case';
-import { NotFoundError } from '../../../../../@seedwork/domain';
+import { NotFoundError } from '../../../../../shared/domain';
 
 describe('DeletePersonUseCase Unit Tests', () => {
   let repository: PersonInMemoryRepository;
