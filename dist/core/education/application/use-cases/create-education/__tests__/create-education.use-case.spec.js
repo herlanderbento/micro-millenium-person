@@ -15,12 +15,7 @@ describe('CreateEducationUseCase Unit Tests', () => {
     });
     it('should create a education with default values', async () => {
         const spyCreate = jest.spyOn(repository, 'create');
-        let person = new domain_1.Person({
-            userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-            gender: 'male',
-            address: 'address',
-            birthdate: new Date('2001-07-15T09:29:58.242Z'),
-        });
+        let person = domain_1.Person.fake().aPerson().build();
         personRepository.create(person);
         let output = await useCase.execute({
             personId: personRepository.items[0].id,
@@ -49,12 +44,7 @@ describe('CreateEducationUseCase Unit Tests', () => {
     });
     it('should create a education with all values', async () => {
         const spyCreate = jest.spyOn(repository, 'create');
-        let person = new domain_1.Person({
-            userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-            gender: 'male',
-            address: 'address',
-            birthdate: new Date('2001-07-15T09:29:58.242Z'),
-        });
+        let person = domain_1.Person.fake().aPerson().build();
         personRepository.create(person);
         let output = await useCase.execute({
             personId: personRepository.items[0].id,

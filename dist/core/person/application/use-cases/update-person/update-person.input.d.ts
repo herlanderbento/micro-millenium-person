@@ -1,4 +1,4 @@
-export type GenderType = 'male' | 'female';
+import { GenderType } from '../../../domain';
 export type UpdatePersonInput = {
     id: string;
     gender: GenderType;

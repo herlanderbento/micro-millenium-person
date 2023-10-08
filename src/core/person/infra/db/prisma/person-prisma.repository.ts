@@ -18,26 +18,36 @@ export class PersonPrismaRepository implements IPersonRepository {
     });
   }
 
+  async bulkCreate(entities: Person[]): Promise<void> {
+    const modelsProps = entities.map((entity) =>
+      PersonPrismaMapper.toModel(entity)
+    );
+
+    await prismaClient.person.createMany({
+      data: modelsProps,
+    });
+  }
+
   async findById(id: string | PersonId): Promise<Person> {
     const _id = `${id}`;
 
-    const entity = await prismaClient.person.findUnique({
+    const model = await prismaClient.person.findUnique({
       where: { id: _id },
     });
 
-    if (!entity) {
+    if (!model) {
       throw new NotFoundError(`Entity Not Found using ID ${_id}`);
     }
 
-    return PersonPrismaMapper.toEntity(entity);
+    return PersonPrismaMapper.toEntity(model);
   }
 
   async update(entity: Person): Promise<Person> {
-    const update = await prismaClient.person.update({
+    const model = await prismaClient.person.update({
       where: { id: entity.id },
       data: PersonPrismaMapper.toModel(entity),
     });
-    return PersonPrismaMapper.toEntity(update);
+    return PersonPrismaMapper.toEntity(model);
   }
 
   async search(props: PersonSearchParams): Promise<PersonSearchResult> {
@@ -67,9 +77,9 @@ export class PersonPrismaRepository implements IPersonRepository {
   }
 
   async findAll(): Promise<Person[]> {
-    const entities = await prismaClient.person.findMany();
+    const models = await prismaClient.person.findMany();
 
-    return entities.map(PersonPrismaMapper.toEntity);
+    return models.map(PersonPrismaMapper.toEntity);
   }
 
   async delete(id: string | PersonId): Promise<void> {

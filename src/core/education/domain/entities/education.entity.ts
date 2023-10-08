@@ -1,10 +1,11 @@
 import { PersonId } from '../../../person/domain';
 import {
   EntityValidationError,
-  UniqueEntityId,
+  Uuid,
   AggregateRoot,
 } from '../../../shared/domain';
 import { EducationValidatorFactory } from '../validation/education.validation';
+import { EducationFakeBuilder } from './education-fake.builder';
 
 export type EducationProperties = {
   personId: PersonId | string;
@@ -26,14 +27,21 @@ export type EducationCreateCommand = Omit<
   'createdAt' | 'updatedAt'
 >;
 
-export type EducationUpdateCommand = Omit<
-  EducationProperties,
-  'personId' | 'createdAt' | 'updatedAt'
->;
+export type EducationUpdateCommand = {
+  title: string;
+  educationType: string;
+  institute: string;
+  description: string;
+  address?: string;
+  startDate: Date;
+  endDate?: Date;
+  isCurrent?: boolean;
+  isVerified?: boolean;
+};
 
 export type EducationPropsJson = Required<{ id: string } & EducationProperties>;
 
-export class EducationId extends UniqueEntityId {}
+export class EducationId extends Uuid {}
 
 export class Education extends AggregateRoot<
   EducationId,
@@ -191,6 +199,10 @@ export class Education extends AggregateRoot<
     if (!isValid) {
       throw new EntityValidationError(validator.errors);
     }
+  }
+
+  static fake() {
+    return EducationFakeBuilder;
   }
 
   toJSON(): EducationPropsJson {

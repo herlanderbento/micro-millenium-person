@@ -8,10 +8,12 @@ export class DeleteEductionUseCase
   constructor(private educationRepository: IEducationRepository) {}
 
   async execute(input: DeleteEducationInput): Promise<DeleteEducationOutput> {
-    const entity = await this.educationRepository.findById(input.id);
+    const education = await this.educationRepository.findById(input.id);
 
-    if (!entity) {
-      throw new NotFoundError('education not found');
+    if (!education) {
+      throw new NotFoundError(
+        `${education.title} Not Found using ID ${input.id}`
+      );
     }
 
     await this.educationRepository.delete(input.id);

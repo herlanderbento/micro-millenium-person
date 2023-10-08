@@ -2,6 +2,7 @@ import { Person, PersonId, IPersonRepository, PersonSearchParams, PersonSearchRe
 export declare class PersonPrismaRepository implements IPersonRepository {
     sortableFields: string[];
     create(entity: Person): Promise<void>;
+    bulkCreate(entities: Person[]): Promise<void>;
     findById(id: string | PersonId): Promise<Person>;
     update(entity: Person): Promise<Person>;
     search(props: PersonSearchParams): Promise<PersonSearchResult>;

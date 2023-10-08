@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UniqueEntityId = void 0;
+exports.Uuid = void 0;
 const uuid_1 = require("uuid");
 const value_object_1 = __importDefault(require("./value-object"));
 const invalid_uuid_error_1 = __importDefault(require("../errors/invalid-uuid.error"));
-class UniqueEntityId extends value_object_1.default {
+class Uuid extends value_object_1.default {
     id;
     constructor(id) {
         super(id || (0, uuid_1.v4)());
@@ -21,5 +21,5 @@ class UniqueEntityId extends value_object_1.default {
         }
     }
 }
-exports.UniqueEntityId = UniqueEntityId;
-exports.default = UniqueEntityId;
+exports.Uuid = Uuid;
+exports.default = Uuid;

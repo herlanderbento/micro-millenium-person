@@ -1,5 +1,6 @@
 import { PersonId } from '../../../person/domain';
-import { UniqueEntityId, AggregateRoot } from '../../../shared/domain';
+import { Uuid, AggregateRoot } from '../../../shared/domain';
+import { EducationFakeBuilder } from './education-fake.builder';
 export type EducationProperties = {
     personId: PersonId | string;
     title: string;
@@ -15,11 +16,21 @@ export type EducationProperties = {
     updatedAt?: Date;
 };
 export type EducationCreateCommand = Omit<EducationProperties, 'createdAt' | 'updatedAt'>;
-export type EducationUpdateCommand = Omit<EducationProperties, 'personId' | 'createdAt' | 'updatedAt'>;
+export type EducationUpdateCommand = {
+    title: string;
+    educationType: string;
+    institute: string;
+    description: string;
+    address?: string;
+    startDate: Date;
+    endDate?: Date;
+    isCurrent?: boolean;
+    isVerified?: boolean;
+};
 export type EducationPropsJson = Required<{
     id: string;
 } & EducationProperties>;
-export declare class EducationId extends UniqueEntityId {
+export declare class EducationId extends Uuid {
 }
 export declare class Education extends AggregateRoot<EducationId, EducationProperties, EducationPropsJson> {
     readonly props: EducationProperties;
@@ -53,5 +64,6 @@ export declare class Education extends AggregateRoot<EducationId, EducationPrope
     static create(props: EducationCreateCommand): Education;
     update(props: EducationUpdateCommand): void;
     static validate(props: EducationProperties): void;
+    static fake(): typeof EducationFakeBuilder;
     toJSON(): EducationPropsJson;
 }

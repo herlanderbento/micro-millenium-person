@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const entity_1 = __importDefault(require("../../entity/entity"));
 const not_found_error_1 = __importDefault(require("../../errors/not-found.error"));
-const unique_entity_id_vo_1 = __importDefault(require("../../value-objects/unique-entity-id.vo"));
+const value_objects_1 = require("../../value-objects");
 const in_memory_repository_1 = require("../in-memory-repository");
 class StubEntity extends entity_1.default {
     constructor(props, entityId) {
-        super(props, entityId ?? new unique_entity_id_vo_1.default());
+        super(props, entityId ?? new value_objects_1.Uuid());
     }
     toJSON() {
         return {
@@ -21,49 +21,49 @@ class StubEntity extends entity_1.default {
 }
 class StubInMemoryRepository extends in_memory_repository_1.InMemoryRepository {
 }
-describe("InMemoryRepository Unit Tests", () => {
+describe('InMemoryRepository Unit Tests', () => {
     let repository;
     beforeEach(() => (repository = new StubInMemoryRepository()));
-    it("should inserts a new entity", async () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should inserts a new entity', async () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         await repository.create(entity);
         expect(entity.toJSON()).toStrictEqual(repository.items[0].toJSON());
     });
-    it("should throws error when entity not found", async () => {
-        await expect(repository.findById("fake id")).rejects.toThrow(new not_found_error_1.default("Entity Not Found using ID fake id"));
-        await expect(repository.findById(new unique_entity_id_vo_1.default("9366b7dc-2d71-4799-b91c-c64adb205104"))).rejects.toThrow(new not_found_error_1.default(`Entity Not Found using ID 9366b7dc-2d71-4799-b91c-c64adb205104`));
+    it('should throws error when entity not found', async () => {
+        await expect(repository.findById('fake id')).rejects.toThrow(new not_found_error_1.default('Entity Not Found using ID fake id'));
+        await expect(repository.findById(new value_objects_1.Uuid('9366b7dc-2d71-4799-b91c-c64adb205104'))).rejects.toThrow(new not_found_error_1.default(`Entity Not Found using ID 9366b7dc-2d71-4799-b91c-c64adb205104`));
     });
-    it("should finds a entity by id", async () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should finds a entity by id', async () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         await repository.create(entity);
         let entityFound = await repository.findById(entity.id);
         expect(entity.toJSON()).toStrictEqual(entityFound.toJSON());
         entityFound = await repository.findById(entity.entityId);
         expect(entity.toJSON()).toStrictEqual(entityFound.toJSON());
     });
-    it("should returns all entities", async () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should returns all entities', async () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         await repository.create(entity);
         const entities = await repository.findAll();
         expect(entities).toStrictEqual([entity]);
     });
-    it("should throws error on update when entity not found", () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should throws error on update when entity not found', () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         expect(repository.update(entity)).rejects.toThrow(new not_found_error_1.default(`Entity Not Found using ID ${entity.id}`));
     });
-    it("should updates an entity", async () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should updates an entity', async () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         await repository.create(entity);
-        const entityUpdated = new StubEntity({ name: "updated", price: 1 }, entity.entityId);
+        const entityUpdated = new StubEntity({ name: 'updated', price: 1 }, entity.entityId);
         await repository.update(entityUpdated);
         expect(entityUpdated.toJSON()).toStrictEqual(repository.items[0].toJSON());
     });
-    it("should throws error on delete when entity not found", () => {
-        expect(repository.delete("fake id")).rejects.toThrow(new not_found_error_1.default("Entity Not Found using ID fake id"));
-        expect(repository.delete(new unique_entity_id_vo_1.default("9366b7dc-2d71-4799-b91c-c64adb205104"))).rejects.toThrow(new not_found_error_1.default(`Entity Not Found using ID 9366b7dc-2d71-4799-b91c-c64adb205104`));
+    it('should throws error on delete when entity not found', () => {
+        expect(repository.delete('fake id')).rejects.toThrow(new not_found_error_1.default('Entity Not Found using ID fake id'));
+        expect(repository.delete(new value_objects_1.Uuid('9366b7dc-2d71-4799-b91c-c64adb205104'))).rejects.toThrow(new not_found_error_1.default(`Entity Not Found using ID 9366b7dc-2d71-4799-b91c-c64adb205104`));
     });
-    it("should deletes an entity", async () => {
-        const entity = new StubEntity({ name: "name value", price: 5 });
+    it('should deletes an entity', async () => {
+        const entity = new StubEntity({ name: 'name value', price: 5 });
         await repository.create(entity);
         await repository.delete(entity.id);
         expect(repository.items).toHaveLength(0);

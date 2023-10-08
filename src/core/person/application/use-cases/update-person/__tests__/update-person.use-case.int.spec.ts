@@ -30,7 +30,7 @@ describe('UpdatePersonUseCase Unit Tests', () => {
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
     });
-    repository.create(entity);
+    await repository.create(entity);
 
     let output = await useCase.execute({
       id: entity.id,

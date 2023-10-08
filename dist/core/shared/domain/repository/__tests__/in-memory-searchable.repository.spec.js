@@ -10,7 +10,7 @@ const search_params_1 = require("../search-params");
 const search_result_1 = require("../search-result");
 class StubEntity extends entity_1.default {
     constructor(props, entityId) {
-        super(props, entityId ?? new value_objects_1.UniqueEntityId());
+        super(props, entityId ?? new value_objects_1.Uuid());
     }
     toJSON() {
         return {

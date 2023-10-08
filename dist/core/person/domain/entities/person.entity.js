@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Person = exports.PersonId = void 0;
 const aggregate_root_1 = require("../../../shared/domain/entity/aggregate-root");
-const unique_entity_id_vo_1 = require("../../../shared/domain/value-objects/unique-entity-id.vo");
+const value_objects_1 = require("../../../shared/domain/value-objects");
 const validation_error_1 = require("../../../shared/domain/errors/validation-error");
 const person_validation_1 = require("../validation/person.validation");
 const person_fake_builder_1 = require("./person-fake-builder");
-class PersonId extends unique_entity_id_vo_1.UniqueEntityId {
+class PersonId extends value_objects_1.Uuid {
 }
 exports.PersonId = PersonId;
 class Person extends aggregate_root_1.AggregateRoot {
@@ -14,7 +14,6 @@ class Person extends aggregate_root_1.AggregateRoot {
     constructor(props, entityId) {
         super(props, entityId ?? new PersonId());
         this.props = props;
-        Person.validate(props);
         this.biography = this.props.biography ?? null;
         this.shareableSection = this.props.shareableSection ?? null;
         this.isOpenToWork = this.props.isOpenToWork ?? true;
@@ -84,16 +83,6 @@ class Person extends aggregate_root_1.AggregateRoot {
         return this.props.updatedAt;
     }
     update(props) {
-        Person.validate({
-            ...this.props,
-            gender: props.gender,
-            biography: props.biography,
-            address: props.address,
-            birthdate: props.birthdate,
-            shareableSection: props.shareableSection,
-            isOpenToWork: props.isOpenToWork,
-            isFreelancer: props.isFreelancer,
-        });
         this.gender = props.gender;
         this.biography = props.biography;
         this.address = props.address;
@@ -117,7 +106,7 @@ class Person extends aggregate_root_1.AggregateRoot {
         }
     }
     static fake() {
-        return (0, person_fake_builder_1.PersonFakeBuilder)();
+        return person_fake_builder_1.PersonFakeBuilder;
     }
     activateForWork() {
         this.props.isOpenToWork = true;

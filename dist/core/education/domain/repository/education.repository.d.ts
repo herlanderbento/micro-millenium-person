@@ -5,5 +5,5 @@ export declare class EducationSearchParams extends SearchParams<EducationFilter>
 }
 export declare class EducationSearchResult extends SearchResult<Education, EducationFilter> {
 }
-export interface IEducationRepository extends Omit<ISearchableRepository<Education, EducationId, EducationFilter, EducationSearchParams, EducationSearchResult>, 'bulkCreate'> {
+export interface IEducationRepository extends ISearchableRepository<Education, EducationId, EducationFilter, EducationSearchParams, EducationSearchResult> {
 }

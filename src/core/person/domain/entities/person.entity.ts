@@ -1,5 +1,5 @@
 import { AggregateRoot } from '../../../shared/domain/entity/aggregate-root';
-import { UniqueEntityId } from '../../../shared/domain/value-objects/unique-entity-id.vo';
+import { Uuid } from '../../../shared/domain/value-objects';
 import { EntityValidationError } from '../../../shared/domain/errors/validation-error';
 import { PersonValidatorFactory } from '../validation/person.validation';
 import { PersonFakeBuilder } from './person-fake-builder';
@@ -22,7 +22,7 @@ export type PersonProperties = {
 
 export type PersonOutputJson = Required<{ id: string } & PersonProperties>;
 
-export class PersonId extends UniqueEntityId {}
+export class PersonId extends Uuid {}
 
 export class Person extends AggregateRoot<
   PersonId,
@@ -31,7 +31,7 @@ export class Person extends AggregateRoot<
 > {
   constructor(public readonly props: PersonProperties, entityId?: PersonId) {
     super(props, entityId ?? new PersonId());
-    Person.validate(props);
+    // Person.validate(props);
     this.biography = this.props.biography ?? null;
     this.shareableSection = this.props.shareableSection ?? null;
     this.isOpenToWork = this.props.isOpenToWork ?? true;
@@ -128,16 +128,16 @@ export class Person extends AggregateRoot<
   // }
 
   update(props: Omit<PersonProperties, 'userId' | 'avatar'>): void {
-    Person.validate({
-      ...this.props,
-      gender: props.gender,
-      biography: props.biography,
-      address: props.address,
-      birthdate: props.birthdate,
-      shareableSection: props.shareableSection,
-      isOpenToWork: props.isOpenToWork,
-      isFreelancer: props.isFreelancer,
-    });
+    // Person.validate({
+    //   ...this.props,
+    //   gender: props.gender,
+    //   biography: props.biography,
+    //   address: props.address,
+    //   birthdate: props.birthdate,
+    //   shareableSection: props.shareableSection,
+    //   isOpenToWork: props.isOpenToWork,
+    //   isFreelancer: props.isFreelancer,
+    // });
 
     this.gender = props.gender;
     this.biography = props.biography;
@@ -165,7 +165,7 @@ export class Person extends AggregateRoot<
   }
 
   static fake() {
-    return PersonFakeBuilder();
+    return PersonFakeBuilder;
   }
 
   activateForWork(): void {

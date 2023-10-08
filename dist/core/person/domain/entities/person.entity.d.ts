@@ -1,5 +1,6 @@
 import { AggregateRoot } from '../../../shared/domain/entity/aggregate-root';
-import { UniqueEntityId } from '../../../shared/domain/value-objects/unique-entity-id.vo';
+import { Uuid } from '../../../shared/domain/value-objects';
+import { PersonFakeBuilder } from './person-fake-builder';
 export type GenderType = 'male' | 'female';
 export type PersonProperties = {
     userId: string;
@@ -17,7 +18,7 @@ export type PersonProperties = {
 export type PersonOutputJson = Required<{
     id: string;
 } & PersonProperties>;
-export declare class PersonId extends UniqueEntityId {
+export declare class PersonId extends Uuid {
 }
 export declare class Person extends AggregateRoot<PersonId, PersonProperties, PersonOutputJson> {
     readonly props: PersonProperties;
@@ -45,20 +46,7 @@ export declare class Person extends AggregateRoot<PersonId, PersonProperties, Pe
     update(props: Omit<PersonProperties, 'userId' | 'avatar'>): void;
     updateAvatar(avatar: string): void;
     static validate(props: PersonProperties): void;
-    static fake(): {
-        id: string;
-        userId: string;
-        gender: GenderType;
-        address: string;
-        birthdate: Date;
-        biography: string;
-        shareableSection: string;
-        isOpenToWork: boolean;
-        isFreelancer: boolean;
-        avatar: string;
-        createdAt: Date;
-        updatedAt: Date;
-    };
+    static fake(): typeof PersonFakeBuilder;
     activateForWork(): void;
     deactivateForWork(): void;
     activateForFreelancer(): void;

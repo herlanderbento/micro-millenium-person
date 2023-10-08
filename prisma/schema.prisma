@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Person {
-  id               String   @id
+  id               String      @id
   userId           String?
   gender           String
   address          String
@@ -23,4 +23,22 @@ model Person {
   avatar           String?
   createdAt        DateTime
   updatedAt        DateTime
+  Education        Education[]
+}
+
+model Education {
+  id            String    @id
+  personId      String
+  title         String
+  educationType String
+  institute     String
+  address       String?
+  startDate     DateTime
+  endDate       DateTime?
+  description   String
+  isCurrent     Boolean?
+  isVerified    Boolean?
+  createdAt     DateTime?
+  updatedAt     DateTime?
+  person        Person    @relation(fields: [personId], references: [id])
 }

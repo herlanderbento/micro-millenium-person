@@ -1,4 +1,4 @@
-import { Education } from './education.entity';
+import { Education } from '../education.entity';
 
 describe('Education unit tests', () => {
   let validateSpy: any;

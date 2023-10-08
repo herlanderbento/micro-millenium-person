@@ -6,9 +6,9 @@ export class CreatePersonController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const requestBody = createPersonBodySchemaValidation.parse(request.body);
 
-    const CreatePersonUseCase = CreatePersonUseCaseFactory.create();
+    const createPersonUseCase = CreatePersonUseCaseFactory.create();
     //@ts-ignore
-    const output = await CreatePersonUseCase.execute(requestBody);
+    const output = await createPersonUseCase.execute(requestBody);
 
     return reply.status(201).send(output);
   }

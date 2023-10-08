@@ -4,9 +4,9 @@ type SearchResultConstructorProps<E extends Entity, Filter> = {
     total: number;
     current_page: number;
     per_page: number;
-    sort: string | null;
-    sort_dir: string | null;
-    filter: Filter | null;
+    sort?: string | null;
+    sort_dir?: string | null;
+    filter?: Filter | null;
 };
 export declare class SearchResult<E extends Entity = Entity, Filter = string> {
     readonly items: E[];

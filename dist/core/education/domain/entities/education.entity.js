@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Education = exports.EducationId = void 0;
 const domain_1 = require("../../../shared/domain");
 const education_validation_1 = require("../validation/education.validation");
-class EducationId extends domain_1.UniqueEntityId {
+const education_fake_builder_1 = require("./education-fake.builder");
+class EducationId extends domain_1.Uuid {
 }
 exports.EducationId = EducationId;
 class Education extends domain_1.AggregateRoot {
@@ -128,6 +129,9 @@ class Education extends domain_1.AggregateRoot {
         if (!isValid) {
             throw new domain_1.EntityValidationError(validator.errors);
         }
+    }
+    static fake() {
+        return education_fake_builder_1.EducationFakeBuilder;
     }
     toJSON() {
         return {

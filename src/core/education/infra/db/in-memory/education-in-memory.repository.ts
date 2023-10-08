@@ -9,6 +9,8 @@ export class EducationInMemoryRepository
   extends InMemorySearchableRepository<Education, EducationId>
   implements IEducationRepository
 {
+  sortableFields: string[] = ['title', 'createdAt'];
+
   protected async applyFilter(
     items: Education[],
     filter: string
@@ -16,6 +18,10 @@ export class EducationInMemoryRepository
     if (!filter) {
       return items;
     }
+
+    return items.filter((item) => {
+      return item.title.toLowerCase().includes(filter.toLowerCase());
+    });
   }
 
   protected async applySort(
@@ -23,8 +29,8 @@ export class EducationInMemoryRepository
     sort: string | null,
     sort_dir: SortDirection | null
   ): Promise<Education[]> {
-    return !sort
-      ? super.applySort(items, 'createdAt', 'desc')
-      : super.applySort(items, sort, sort_dir);
+    return sort
+      ? super.applySort(items, sort, sort_dir)
+      : super.applySort(items, 'createdAt', 'desc');
   }
 }

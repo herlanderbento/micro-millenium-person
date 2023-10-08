@@ -1,6 +1,6 @@
 import { IEducationRepository } from '../../../domain';
 import { IUseCase } from '../../../../shared/application/use-cases';
-import { EducationOutput } from '../common/education-output';
+import { EducationOutput } from '../common';
 import { IPersonRepository } from '../../../../person/domain';
 import { CreateEducationInput } from './create-education.input';
 export declare class CreateEducationUseCase implements IUseCase<CreateEducationInput, CreateEducationOutput> {

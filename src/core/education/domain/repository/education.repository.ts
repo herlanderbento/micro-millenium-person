@@ -1,6 +1,5 @@
 import {
   ISearchableRepository,
-  RepositoryInterface,
   SearchParams,
   SearchResult,
 } from '../../../shared/domain';
@@ -15,13 +14,10 @@ export class EducationSearchResult extends SearchResult<
 > {}
 
 export interface IEducationRepository
-  extends Omit<
-    ISearchableRepository<
-      Education,
-      EducationId,
-      EducationFilter,
-      EducationSearchParams,
-      EducationSearchResult
-    >,
-    'bulkCreate'
+  extends ISearchableRepository<
+    Education,
+    EducationId,
+    EducationFilter,
+    EducationSearchParams,
+    EducationSearchResult
   > {}

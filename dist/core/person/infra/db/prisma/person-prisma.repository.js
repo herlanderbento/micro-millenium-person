@@ -12,22 +12,28 @@ class PersonPrismaRepository {
             data: person_prisma_mapper_1.PersonPrismaMapper.toModel(entity),
         });
     }
+    async bulkCreate(entities) {
+        const modelsProps = entities.map((entity) => person_prisma_mapper_1.PersonPrismaMapper.toModel(entity));
+        await prisma_client_1.prismaClient.person.createMany({
+            data: modelsProps,
+        });
+    }
     async findById(id) {
         const _id = `${id}`;
-        const entity = await prisma_client_1.prismaClient.person.findUnique({
+        const model = await prisma_client_1.prismaClient.person.findUnique({
             where: { id: _id },
         });
-        if (!entity) {
+        if (!model) {
             throw new domain_2.NotFoundError(`Entity Not Found using ID ${_id}`);
         }
-        return person_prisma_mapper_1.PersonPrismaMapper.toEntity(entity);
+        return person_prisma_mapper_1.PersonPrismaMapper.toEntity(model);
     }
     async update(entity) {
-        const update = await prisma_client_1.prismaClient.person.update({
+        const model = await prisma_client_1.prismaClient.person.update({
             where: { id: entity.id },
             data: person_prisma_mapper_1.PersonPrismaMapper.toModel(entity),
         });
-        return person_prisma_mapper_1.PersonPrismaMapper.toEntity(update);
+        return person_prisma_mapper_1.PersonPrismaMapper.toEntity(model);
     }
     async search(props) {
         const sortable = props.sort && this.sortableFields.includes(props.sort);
@@ -52,8 +58,8 @@ class PersonPrismaRepository {
         });
     }
     async findAll() {
-        const entities = await prisma_client_1.prismaClient.person.findMany();
-        return entities.map(person_prisma_mapper_1.PersonPrismaMapper.toEntity);
+        const models = await prisma_client_1.prismaClient.person.findMany();
+        return models.map(person_prisma_mapper_1.PersonPrismaMapper.toEntity);
     }
     async delete(id) {
         const _id = `${id}`;

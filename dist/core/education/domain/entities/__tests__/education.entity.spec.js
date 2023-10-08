@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const education_entity_1 = require("./education.entity");
+const education_entity_1 = require("../education.entity");
 describe('Education unit tests', () => {
     let validateSpy;
     beforeEach(() => {

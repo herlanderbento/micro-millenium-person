@@ -6,8 +6,8 @@ const validation_1 = require("../validation");
 class CreatePersonController {
     async handle(request, reply) {
         const requestBody = validation_1.createPersonBodySchemaValidation.parse(request.body);
-        const CreatePersonUseCase = application_1.CreatePersonUseCaseFactory.create();
-        const output = await CreatePersonUseCase.execute(requestBody);
+        const createPersonUseCase = application_1.CreatePersonUseCaseFactory.create();
+        const output = await createPersonUseCase.execute(requestBody);
         return reply.status(201).send(output);
     }
 }

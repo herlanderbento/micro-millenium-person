@@ -15,5 +15,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./date-range.vo"), exports);
-__exportStar(require("./unique-entity-id.vo"), exports);
+__exportStar(require("./uuid.vo"), exports);
 __exportStar(require("./value-object"), exports);
