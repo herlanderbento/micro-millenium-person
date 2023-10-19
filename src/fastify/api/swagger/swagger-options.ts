@@ -3,6 +3,7 @@ export const swaggerOptions = {
   openapi: {
     info: {
       title: 'Micro Millenium 27 API',
+      
       version: '0.1.0',
     },
     externalDocs: {

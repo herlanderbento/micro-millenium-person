@@ -149,10 +149,11 @@ export class Person extends AggregateRoot<
   }
 
   updateAvatar(avatar: string): void {
-    Person.validate({
-      ...this.props,
-      avatar,
-    });
+    console.log(avatar, 'avatar2')
+    // Person.validate({
+    //   ...this.props,
+    //   avatar,
+    // });
     this.avatar = avatar;
   }
 
@@ -187,7 +188,17 @@ export class Person extends AggregateRoot<
   toJSON(): PersonOutputJson {
     return {
       id: this.id.toString(),
-      ...this.props,
-    } as PersonOutputJson;
+      userId: this.userId,
+      gender: this.gender,
+      address: this.address,
+      birthdate: this.birthdate,
+      biography: this.biography,
+      shareableSection: this.shareableSection,
+      isOpenToWork: this.isOpenToWork,
+      isFreelancer: this.isFreelancer,
+      avatar: this.avatar,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
   }
 }

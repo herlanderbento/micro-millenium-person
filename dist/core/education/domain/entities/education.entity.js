@@ -97,11 +97,6 @@ class Education extends domain_1.AggregateRoot {
     unverified() {
         this.isVerified = false;
     }
-    static create(props) {
-        const education = new Education(props);
-        Education.validate(props);
-        return education;
-    }
     update(props) {
         Education.validate({
             ...this.props,
@@ -122,6 +117,11 @@ class Education extends domain_1.AggregateRoot {
         this.endDate = props.endDate;
         this.isCurrent = props.isCurrent;
         this.isVerified = props.isVerified;
+    }
+    static create(props) {
+        const education = new Education(props);
+        Education.validate(props);
+        return education;
     }
     static validate(props) {
         const validator = education_validation_1.EducationValidatorFactory.create();

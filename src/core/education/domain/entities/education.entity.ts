@@ -164,13 +164,7 @@ export class Education extends AggregateRoot<
   unverified() {
     this.isVerified = false;
   }
-
-  static create(props: EducationCreateCommand) {
-    const education = new Education(props);
-    Education.validate(props);
-    return education;
-  }
-
+  
   update(props: EducationUpdateCommand) {
     Education.validate({
       ...this.props,
@@ -191,6 +185,12 @@ export class Education extends AggregateRoot<
     this.endDate = props.endDate;
     this.isCurrent = props.isCurrent;
     this.isVerified = props.isVerified;
+  }
+
+  static create(props: EducationCreateCommand) {
+    const education = new Education(props);
+    Education.validate(props);
+    return education;
   }
 
   static validate(props: EducationProperties) {

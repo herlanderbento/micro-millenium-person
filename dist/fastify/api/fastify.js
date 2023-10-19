@@ -12,17 +12,19 @@ const routes_1 = require("./routes");
 const zod_1 = require("zod");
 const redis_client_1 = require("../../core/shared/infra/redis/redis-client");
 const swagger_2 = require("./swagger");
+const domain_1 = require("../../core/shared/domain");
 const app = (0, fastify_1.default)();
 exports.app = app;
 app.register(swagger_1.default, swagger_2.swaggerOptions);
 app.register(swagger_ui_1.default, swagger_2.swaggerUiOptions);
 app.register(cookie_1.default);
-app.register(routes_1.miraRoutes, { prefix: 'person' });
+app.register(routes_1.personRoutes, { prefix: 'persons' });
+app.register(routes_1.educationRoutes, { prefix: 'educations' });
 app.setErrorHandler((error, _, reply) => {
-    if (error instanceof zod_1.ZodError) {
+    if (error instanceof zod_1.ZodError || error instanceof domain_1.NotFoundError) {
         return reply
             .status(400)
-            .send({ message: 'Validation error.', issues: error.format() });
+            .send({ message: 'Validation error.', issues: error.message });
     }
     return reply.status(500).send({ message: `Internal server error. ${error}` });
 });

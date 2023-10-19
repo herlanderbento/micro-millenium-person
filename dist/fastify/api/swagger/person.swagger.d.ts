@@ -1,6 +1,5 @@
 export declare const createPersonSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         body: {
@@ -85,16 +84,24 @@ export declare const createPersonSchema: {
 };
 export declare const listPersonsSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         query: {
             type: string;
             properties: {
+                filter: {
+                    type: string;
+                };
                 page: {
                     type: string;
                 };
                 per_page: {
+                    type: string;
+                };
+                sort: {
+                    type: string;
+                };
+                sort_dir: {
                     type: string;
                 };
             };
@@ -104,7 +111,6 @@ export declare const listPersonsSchema: {
 };
 export declare const getPersonSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         params: {
@@ -166,7 +172,6 @@ export declare const getPersonSchema: {
 };
 export declare const updatePersonSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         params: {
@@ -259,7 +264,6 @@ export declare const updatePersonSchema: {
 };
 export declare const deletePersonSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         params: {
@@ -283,7 +287,6 @@ export declare const deletePersonSchema: {
 };
 export declare const getAllPersonsSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         response: {};
@@ -291,7 +294,6 @@ export declare const getAllPersonsSchema: {
 };
 export declare const updateAvatarPersonSchema: {
     schema: {
-        description: string;
         tags: string[];
         summary: string;
         params: {

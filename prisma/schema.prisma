@@ -23,7 +23,7 @@ model Person {
   avatar           String?
   createdAt        DateTime
   updatedAt        DateTime
-  Education        Education[]
+  educations       Education[]
 }
 
 model Education {
@@ -40,5 +40,5 @@ model Education {
   isVerified    Boolean?
   createdAt     DateTime?
   updatedAt     DateTime?
-  person        Person    @relation(fields: [personId], references: [id])
+  person        Person    @relation(fields: [personId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }

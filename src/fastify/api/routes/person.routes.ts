@@ -26,7 +26,7 @@ const updatePersonController = new UpdatePersonController();
 const getAllPersonsController = new GetAllPersonsController();
 const updatePersonAvatarController = new UpdatePersonAvatarController();
 
-export async function miraRoutes(app: FastifyInstance) {
+export async function personRoutes(app: FastifyInstance) {
   app.post('', createPersonSchema, createPersonController.handle);
   app.get('', listPersonsSchema, listPersonsController.handle);
   app.get('/:id', getPersonSchema, getPersonController.handle);

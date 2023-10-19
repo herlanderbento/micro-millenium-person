@@ -12,6 +12,7 @@ export class UpdatePersonAvatarController {
       request.body
     );
 
+    console.log(avatar)
     const updatePersonAvatar = UpdatePersonAvatarUseCaseFactory.create();
 
     const output = await updatePersonAvatar.execute({ id, avatar });

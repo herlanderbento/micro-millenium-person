@@ -8,16 +8,16 @@ class UpdateEducationUseCase {
         this.educationRepository = educationRepository;
     }
     async execute(input) {
-        const education = await this.educationRepository.findById(input.id);
-        education.update(input);
+        const entity = await this.educationRepository.findById(input.id);
+        entity.update(input);
         if (input.isVerified === true) {
-            education.verified();
+            entity.verified();
         }
         if (input.isVerified === false) {
-            education.unverified();
+            entity.unverified();
         }
-        await this.educationRepository.update(education);
-        return education_output_1.EducationOutputMapper.toOutput(education);
+        await this.educationRepository.update(entity);
+        return education_output_1.EducationOutputMapper.toOutput(entity);
     }
 }
 exports.UpdateEducationUseCase = UpdateEducationUseCase;

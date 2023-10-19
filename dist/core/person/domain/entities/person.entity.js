@@ -92,10 +92,7 @@ class Person extends aggregate_root_1.AggregateRoot {
         this.isFreelancer = props.isFreelancer;
     }
     updateAvatar(avatar) {
-        Person.validate({
-            ...this.props,
-            avatar,
-        });
+        console.log(avatar, 'avatar2');
         this.avatar = avatar;
     }
     static validate(props) {
@@ -123,7 +120,17 @@ class Person extends aggregate_root_1.AggregateRoot {
     toJSON() {
         return {
             id: this.id.toString(),
-            ...this.props,
+            userId: this.userId,
+            gender: this.gender,
+            address: this.address,
+            birthdate: this.birthdate,
+            biography: this.biography,
+            shareableSection: this.shareableSection,
+            isOpenToWork: this.isOpenToWork,
+            isFreelancer: this.isFreelancer,
+            avatar: this.avatar,
+            createdAt: this.createdAt,
+            updatedAt: this.updatedAt,
         };
     }
 }

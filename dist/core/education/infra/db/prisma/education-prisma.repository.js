@@ -47,7 +47,7 @@ class EducationPrismaRepository {
                     title: {
                         contains: props.filter,
                         mode: 'insensitive',
-                    },
+                    }
                 },
             }),
             orderBy: {

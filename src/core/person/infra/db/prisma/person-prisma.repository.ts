@@ -33,12 +33,16 @@ export class PersonPrismaRepository implements IPersonRepository {
 
     const model = await prismaClient.person.findUnique({
       where: { id: _id },
+      include: {
+        educations: true, 
+      },
     });
 
     if (!model) {
       throw new NotFoundError(`Entity Not Found using ID ${_id}`);
     }
 
+    return model as any
     return PersonPrismaMapper.toEntity(model);
   }
 

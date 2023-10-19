@@ -47,18 +47,16 @@ export class EducationPrismaRepository implements IEducationRepository {
   }
 
   async update(entity: Education): Promise<Education> {
-    // await this._get(entity.id);
-
     const model = await prismaClient.education.update({
       where: { id: entity.id },
       data: EducationPrismaMapper.toModel(entity),
     });
+
     return EducationPrismaMapper.toEntity(model);
   }
 
   async search(props: EducationSearchParams): Promise<EducationSearchResult> {
     const sortable = props.sort && this.sortableFields.includes(props.sort);
-
     const count = await prismaClient.education.count();
 
     const models = await prismaClient.education.findMany({
@@ -67,7 +65,7 @@ export class EducationPrismaRepository implements IEducationRepository {
           title: {
             contains: props.filter,
             mode: 'insensitive',
-          },
+          }
         },
       }),
       orderBy: {
@@ -92,8 +90,6 @@ export class EducationPrismaRepository implements IEducationRepository {
 
   async delete(id: string | EducationId): Promise<void> {
     const _id = `${id}`;
-    // await this._get(_id);
-
     await prismaClient.education.delete({ where: { id: _id } });
   }
 

@@ -61,8 +61,8 @@ export declare class Education extends AggregateRoot<EducationId, EducationPrope
     uncurrently(): void;
     verified(): void;
     unverified(): void;
-    static create(props: EducationCreateCommand): Education;
     update(props: EducationUpdateCommand): void;
+    static create(props: EducationCreateCommand): Education;
     static validate(props: EducationProperties): void;
     static fake(): typeof EducationFakeBuilder;
     toJSON(): EducationPropsJson;

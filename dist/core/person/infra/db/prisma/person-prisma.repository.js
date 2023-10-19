@@ -22,10 +22,14 @@ class PersonPrismaRepository {
         const _id = `${id}`;
         const model = await prisma_client_1.prismaClient.person.findUnique({
             where: { id: _id },
+            include: {
+                educations: true,
+            },
         });
         if (!model) {
             throw new domain_2.NotFoundError(`Entity Not Found using ID ${_id}`);
         }
+        return model;
         return person_prisma_mapper_1.PersonPrismaMapper.toEntity(model);
     }
     async update(entity) {

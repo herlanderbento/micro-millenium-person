@@ -1,6 +1,6 @@
 import { IPersonRepository } from '../../../domain';
 import { IUseCase } from '../../../../shared/application/use-cases';
-import { PersonOutput } from '../common';
+import { PersonAllOutput } from '../common';
 export declare class GetPersonUseCase implements IUseCase<GetPersonInput, Output> {
     private personRepository;
     constructor(personRepository: IPersonRepository);
@@ -9,4 +9,4 @@ export declare class GetPersonUseCase implements IUseCase<GetPersonInput, Output
 export type GetPersonInput = {
     id: string;
 };
-export type Output = PersonOutput;
+export type Output = PersonAllOutput;

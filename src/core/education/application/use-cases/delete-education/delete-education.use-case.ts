@@ -2,7 +2,7 @@ import { IUseCase } from '../../../../shared/application';
 import { NotFoundError } from '../../../../shared/domain';
 import { IEducationRepository } from '../../../domain';
 
-export class DeleteEductionUseCase
+export class DeleteEducationUseCase
   implements IUseCase<DeleteEducationInput, DeleteEducationOutput>
 {
   constructor(private educationRepository: IEducationRepository) {}

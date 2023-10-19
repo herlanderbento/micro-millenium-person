@@ -9,7 +9,7 @@ class GetPersonUseCase {
     }
     async execute(input) {
         const entity = await this.personRepository.findById(input.id);
-        return common_1.PersonOutputMapper.toOutput(entity);
+        return common_1.PersonOutputMapper.toAllOutput(entity);
     }
 }
 exports.GetPersonUseCase = GetPersonUseCase;

@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateAvatarPersonSchema = exports.getAllPersonsSchema = exports.deletePersonSchema = exports.updatePersonSchema = exports.getPersonSchema = exports.listPersonsSchema = exports.createPersonSchema = void 0;
 exports.createPersonSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
+        tags: ['Persons'],
         summary: 'create a person',
         body: {
             type: 'object',
@@ -43,16 +42,24 @@ exports.createPersonSchema = {
 };
 exports.listPersonsSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
-        summary: 'list a persons',
+        tags: ['Persons'],
+        summary: 'list persons',
         query: {
             type: 'object',
             properties: {
+                filter: {
+                    type: 'string',
+                },
                 page: {
                     type: 'string',
                 },
                 per_page: {
+                    type: 'string',
+                },
+                sort: {
+                    type: 'string',
+                },
+                sort_dir: {
                     type: 'string',
                 },
             },
@@ -62,8 +69,7 @@ exports.listPersonsSchema = {
 };
 exports.getPersonSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
+        tags: ['Persons'],
         summary: 'get a person',
         params: {
             type: 'object',
@@ -98,8 +104,7 @@ exports.getPersonSchema = {
 };
 exports.updatePersonSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
+        tags: ['Persons'],
         summary: 'update a person',
         params: {
             type: 'object',
@@ -147,8 +152,7 @@ exports.updatePersonSchema = {
 };
 exports.deletePersonSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
+        tags: ['Persons'],
         summary: 'delete a person',
         params: {
             type: 'object',
@@ -171,16 +175,14 @@ exports.deletePersonSchema = {
 };
 exports.getAllPersonsSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
-        summary: 'get all a persons',
+        tags: ['Persons'],
+        summary: 'get all persons',
         response: {},
     },
 };
 exports.updateAvatarPersonSchema = {
     schema: {
-        description: 'post some data',
-        tags: ['Person'],
+        tags: ['Persons'],
         summary: 'update avatar a person',
         params: {
             type: 'object',

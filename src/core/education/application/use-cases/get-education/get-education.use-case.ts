@@ -12,9 +12,7 @@ export class GetEducationUseCase
     const education = await this.educationRepository.findById(input.id);
 
     if (!education) {
-      throw new NotFoundError(
-        `${education.title} Not Found using ID ${input.id}`
-      );
+      throw new NotFoundError(`education not found`);
     }
 
     return EducationOutputMapper.toOutput(education);

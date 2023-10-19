@@ -15,4 +15,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./person.swagger"), exports);
+__exportStar(require("./education.swagger"), exports);
 __exportStar(require("./swagger-options"), exports);

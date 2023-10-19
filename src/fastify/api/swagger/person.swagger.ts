@@ -1,7 +1,6 @@
 export const createPersonSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
+    tags: ['Persons'],
     summary: 'create a person',
     body: {
       type: 'object',
@@ -41,16 +40,24 @@ export const createPersonSchema = {
 
 export const listPersonsSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
-    summary: 'list a persons',
+    tags: ['Persons'],
+    summary: 'list persons',
     query: {
       type: 'object',
       properties: {
+        filter: {
+          type: 'string',
+        },
         page: {
           type: 'string',
         },
         per_page: {
+          type: 'string',
+        },
+        sort: {
+          type: 'string',
+        },
+        sort_dir: {
           type: 'string',
         },
       },
@@ -61,8 +68,7 @@ export const listPersonsSchema = {
 
 export const getPersonSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
+    tags: ['Persons'],
     summary: 'get a person',
     params: {
       type: 'object',
@@ -98,8 +104,7 @@ export const getPersonSchema = {
 
 export const updatePersonSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
+    tags: ['Persons'],
     summary: 'update a person',
     params: {
       type: 'object',
@@ -148,8 +153,7 @@ export const updatePersonSchema = {
 
 export const deletePersonSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
+    tags: ['Persons'],
     summary: 'delete a person',
     params: {
       type: 'object',
@@ -173,17 +177,15 @@ export const deletePersonSchema = {
 
 export const getAllPersonsSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
-    summary: 'get all a persons',
+    tags: ['Persons'],
+    summary: 'get all persons',
     response: {},
   },
 };
 
 export const updateAvatarPersonSchema = {
   schema: {
-    description: 'post some data',
-    tags: ['Person'],
+    tags: ['Persons'],
     summary: 'update avatar a person',
     params: {
       type: 'object',

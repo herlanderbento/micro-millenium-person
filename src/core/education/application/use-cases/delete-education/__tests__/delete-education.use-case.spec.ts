@@ -1,15 +1,15 @@
 import { NotFoundError } from '../../../../../shared/domain';
 import { Education } from '../../../../domain';
 import { EducationInMemoryRepository } from '../../../../infra';
-import { DeleteEductionUseCase } from '../delete-education.use-case';
+import { DeleteEducationUseCase } from '../delete-education.use-case';
 
 describe('DeleteEducationUseCase Unit Tests', () => {
   let repository: EducationInMemoryRepository;
-  let useCase: DeleteEductionUseCase;
+  let useCase: DeleteEducationUseCase;
 
   beforeEach(() => {
     repository = new EducationInMemoryRepository();
-    useCase = new DeleteEductionUseCase(repository);
+    useCase = new DeleteEducationUseCase(repository);
   });
 
   it('should throws error when entity not found', async () => {

@@ -12,20 +12,20 @@ export class UpdateEducationUseCase
   constructor(private educationRepository: IEducationRepository) {}
 
   async execute(input: UpdateEducationInput): Promise<UpdateEducationOutput> {
-    const education = await this.educationRepository.findById(input.id);
-    education.update(input);
+    const entity = await this.educationRepository.findById(input.id);
+    entity.update(input);
 
     if (input.isVerified === true) {
-      education.verified();
+      entity.verified();
     }
 
     if (input.isVerified === false) {
-      education.unverified();
+      entity.unverified();
     }
 
-    await this.educationRepository.update(education);
+    await this.educationRepository.update(entity);
 
-    return EducationOutputMapper.toOutput(education);
+    return EducationOutputMapper.toOutput(entity);
   }
 }
 
