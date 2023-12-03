@@ -11,7 +11,7 @@ export class UpdatePersonAvatarUseCase
   async execute(
     input: UpdatePersonAvatarInput
   ): Promise<UpdatePersonAvatarOutput> {
-    const entity = await this.personRepository.findById(input.id, true);
+    const entity = await this.personRepository.findById(input.id);
     entity.updateAvatar(input.avatar);
 
     await this.personRepository.update(entity);

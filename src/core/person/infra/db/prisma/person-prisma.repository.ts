@@ -29,36 +29,33 @@ export class PersonPrismaRepository implements IPersonRepository {
     });
   }
 
-  async findById(id: string | PersonId, unrelated?: boolean): Promise<Person> {
+  async findById(id: string | PersonId, related?: boolean): Promise<Person> {
     const _id = `${id}`;
 
     const baseQuery: Prisma.PersonFindUniqueArgs = {
       where: { id: _id },
     };
 
-    if (unrelated === true) {
-      const model = await prismaClient.person.findUnique(baseQuery);
+    if (related === true) {
+      const model = await prismaClient.person.findUnique({
+        ...baseQuery,
+        include: { educations: true },
+      });
 
       if (!model) {
         throw new NotFoundError(`Entity Not Found using ID ${_id}`);
       }
-      
-      return model ? PersonPrismaMapper.toEntity(model) : null;
+      //@ts-ignore
+      return PersonPrismaMapper.toAllModel(model);
     }
 
-    const model = await prismaClient.person.findUnique({
-      ...baseQuery,
-      include: {
-        educations: true,
-      },
-    });
+    const model = await prismaClient.person.findUnique(baseQuery);
 
     if (!model) {
       throw new NotFoundError(`Entity Not Found using ID ${_id}`);
     }
 
-    //@ts-ignore
-    return PersonPrismaMapper.toAllModel(model);
+    return model ? PersonPrismaMapper.toEntity(model) : null;
   }
 
   async update(entity: Person): Promise<Person> {

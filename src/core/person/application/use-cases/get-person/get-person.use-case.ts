@@ -6,7 +6,7 @@ export class GetPersonUseCase implements IUseCase<GetPersonInput, Output> {
   constructor(private personRepository: IPersonRepository) {}
 
   async execute(input: GetPersonInput): Promise<Output> {
-    const entity = await this.personRepository.findById(input.id);
+    const entity = await this.personRepository.findById(input.id, true);
 
     return PersonOutputMapper.toAllOutput(entity);
   }

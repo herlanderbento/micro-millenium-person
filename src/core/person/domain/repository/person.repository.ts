@@ -19,7 +19,7 @@ export interface IPersonRepository
     PersonSearchParams,
     PersonSearchResult
   >, 'findById'> {
-    findById(id: string | PersonId, unrelated?: boolean): Promise<Person>
+    findById(id: string | PersonId, related?: boolean): Promise<Person>
   }
 
 export interface IPersonRedisRepository extends IRedisRepository {}

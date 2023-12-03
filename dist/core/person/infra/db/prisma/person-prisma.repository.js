@@ -18,12 +18,12 @@ class PersonPrismaRepository {
             data: modelsProps,
         });
     }
-    async findById(id, unrelated) {
+    async findById(id, related) {
         const _id = `${id}`;
         const baseQuery = {
             where: { id: _id },
         };
-        if (unrelated === true) {
+        if (related === true) {
             const model = await prisma_client_1.prismaClient.person.findUnique(baseQuery);
             return model ? person_prisma_mapper_1.PersonPrismaMapper.toEntity(model) : null;
         }
