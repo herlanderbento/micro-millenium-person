@@ -30,7 +30,7 @@ describe('DeleteEducationUseCase Unit Tests', () => {
       description: 'some description',
     });
 
-    repository.create(education);
+    repository.insert(education);
 
     await useCase.execute({
       id: education.id,

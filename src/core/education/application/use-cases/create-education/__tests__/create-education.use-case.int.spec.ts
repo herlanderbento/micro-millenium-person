@@ -1,6 +1,5 @@
 import { Person } from '../../../../../person/domain';
 import { PersonPrismaRepository } from '../../../../../person/infra';
-import { setupPrismaTests } from '../../../../../shared/infra';
 import { EducationPrismaRepository } from '../../../../infra';
 import { CreateEducationUseCase } from '../create-education.use-case';
 
@@ -20,7 +19,7 @@ describe('CreateEducationUseCase Integration Tests', () => {
   it('should create a education with default values', async () => {
     // const spyCreate = jest.spyOn(repository, 'create');
     let person = Person.fake().aPerson().build();
-    await personRepository.create(person);
+    await personRepository.insert(person);
 
     let output = await useCase.execute({
       personId: person.id,
@@ -29,6 +28,9 @@ describe('CreateEducationUseCase Integration Tests', () => {
       institute: 'some institute',
       startDate: new Date('2023-07-15T09:29:58.242Z'),
       description: 'some description',
+      isCurrent: false,
+      isVerified: false,
+      address: null,
     });
     // expect(spyCreate).toBeCalledTimes(1);
     expect(output).toMatchObject({
@@ -49,9 +51,9 @@ describe('CreateEducationUseCase Integration Tests', () => {
   });
 
   it('should create a education with all values', async () => {
-    const spyCreate = jest.spyOn(repository, 'create');
+    const spyCreate = jest.spyOn(repository, 'insert');
     let person = Person.fake().aPerson().build();
-    personRepository.create(person);
+    personRepository.insert(person);
 
     let output = await useCase.execute({
       personId: person.id,

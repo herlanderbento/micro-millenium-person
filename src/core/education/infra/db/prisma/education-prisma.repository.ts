@@ -12,13 +12,13 @@ import { NotFoundError } from '../../../../shared/domain';
 export class EducationPrismaRepository implements IEducationRepository {
   sortableFields: string[] = ['title', 'createdAt'];
 
-  async create(entity: Education): Promise<void> {
+  async insert(entity: Education): Promise<void> {
     await prismaClient.education.create({
       data: EducationPrismaMapper.toModel(entity),
     });
   }
 
-  async bulkCreate(entities: Education[]): Promise<void> {
+  async bulkInsert(entities: Education[]): Promise<void> {
     const modelsProps = entities.map((entity) =>
       EducationPrismaMapper.toModel(entity)
     );

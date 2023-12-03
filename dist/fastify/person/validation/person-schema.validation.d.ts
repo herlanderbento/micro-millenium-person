@@ -1,29 +1,26 @@
 import { z } from 'zod';
 export declare const createPersonBodySchemaValidation: z.ZodObject<{
     userId: z.ZodString;
-    gender: z.ZodEnum<["male", "female"]>;
+    gender: z.ZodEffects<z.ZodString, string, string>;
     address: z.ZodString;
     birthdate: z.ZodString;
     biography: z.ZodOptional<z.ZodString>;
-    shareableSection: z.ZodOptional<z.ZodString>;
     isOpenToWork: z.ZodOptional<z.ZodBoolean>;
     isFreelancer: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     userId?: string;
-    gender?: "male" | "female";
+    gender?: string;
     address?: string;
     birthdate?: string;
     biography?: string;
-    shareableSection?: string;
     isOpenToWork?: boolean;
     isFreelancer?: boolean;
 }, {
     userId?: string;
-    gender?: "male" | "female";
+    gender?: string;
     address?: string;
     birthdate?: string;
     biography?: string;
-    shareableSection?: string;
     isOpenToWork?: boolean;
     isFreelancer?: boolean;
 }>;
@@ -39,19 +36,22 @@ export declare const updatePersonBodySchemaValidation: z.ZodObject<{
     address: z.ZodString;
     birthdate: z.ZodString;
     biography: z.ZodOptional<z.ZodString>;
-    shareableSection: z.ZodOptional<z.ZodString>;
+    isOpenToWork: z.ZodOptional<z.ZodBoolean>;
+    isFreelancer: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     gender?: "male" | "female";
     address?: string;
     birthdate?: string;
     biography?: string;
-    shareableSection?: string;
+    isOpenToWork?: boolean;
+    isFreelancer?: boolean;
 }, {
     gender?: "male" | "female";
     address?: string;
     birthdate?: string;
     biography?: string;
-    shareableSection?: string;
+    isOpenToWork?: boolean;
+    isFreelancer?: boolean;
 }>;
 export declare const updatePersonAvatarBodySchemaValidation: z.ZodObject<{
     avatar: z.ZodString;

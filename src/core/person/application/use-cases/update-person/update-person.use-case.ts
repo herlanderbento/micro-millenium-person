@@ -9,9 +9,9 @@ export class UpdatePersonUseCase
   constructor(private personRepository: IPersonRepository) {}
 
   async execute(input: UpdatePersonInput): Promise<UpdatePersonOutput> {
-    const entity = await this.personRepository.findById(input.id);
-    entity.update(input);
-
+    const entity = await this.personRepository.findById(input.id, true);
+    entity.update(input)
+    
     await this.personRepository.update(entity);
 
     return PersonOutputMapper.toOutput(entity);

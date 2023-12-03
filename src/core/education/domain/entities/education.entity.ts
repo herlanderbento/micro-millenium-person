@@ -27,18 +27,6 @@ export type EducationCreateCommand = Omit<
   'createdAt' | 'updatedAt'
 >;
 
-export type EducationUpdateCommand = {
-  title: string;
-  educationType: string;
-  institute: string;
-  description: string;
-  address?: string;
-  startDate: Date;
-  endDate?: Date;
-  isCurrent?: boolean;
-  isVerified?: boolean;
-};
-
 export type EducationPropsJson = Required<{ id: string } & EducationProperties>;
 
 export class EducationId extends Uuid {}
@@ -164,27 +152,13 @@ export class Education extends AggregateRoot<
   unverified() {
     this.isVerified = false;
   }
-  
-  update(props: EducationUpdateCommand) {
+
+  update(props: Partial<EducationProperties>) {
     Education.validate({
       ...this.props,
-      title: props.title,
-      educationType: props.educationType,
-      institute: props.institute,
-      description: props.description,
-      address: props.address,
-      isCurrent: props.isCurrent,
-      isVerified: props.isVerified,
+      ...props,
     });
-    this.title = props.title;
-    this.description = props.description;
-    this.institute = props.institute;
-    this.educationType = props.educationType;
-    this.address = props.address;
-    this.startDate = props.startDate;
-    this.endDate = props.endDate;
-    this.isCurrent = props.isCurrent;
-    this.isVerified = props.isVerified;
+    Object.assign(this.props, { ...props });
   }
 
   static create(props: EducationCreateCommand) {

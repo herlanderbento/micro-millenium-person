@@ -22,9 +22,6 @@ export declare const createPersonSchema: {
                 biography: {
                     type: string;
                 };
-                shareableSection: {
-                    type: string;
-                };
                 isOpenToWork: {
                     type: string;
                 };
@@ -55,9 +52,6 @@ export declare const createPersonSchema: {
                         format: string;
                     };
                     biography: {
-                        type: string;
-                    };
-                    shareableSection: {
                         type: string;
                     };
                     isOpenToWork: {
@@ -145,9 +139,6 @@ export declare const getPersonSchema: {
                     biography: {
                         type: string;
                     };
-                    shareableSection: {
-                        type: string;
-                    };
                     isOpenToWork: {
                         type: string;
                     };
@@ -204,9 +195,6 @@ export declare const updatePersonSchema: {
                 biography: {
                     type: string;
                 };
-                shareableSection: {
-                    type: string;
-                };
                 isOpenToWork: {
                     type: string;
                 };
@@ -235,9 +223,6 @@ export declare const updatePersonSchema: {
                         format: string;
                     };
                     biography: {
-                        type: string;
-                    };
-                    shareableSection: {
                         type: string;
                     };
                     isOpenToWork: {
@@ -338,9 +323,6 @@ export declare const updateAvatarPersonSchema: {
                         format: string;
                     };
                     biography: {
-                        type: string;
-                    };
-                    shareableSection: {
                         type: string;
                     };
                     isOpenToWork: {

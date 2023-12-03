@@ -23,7 +23,7 @@ describe('DeletePersonUseCase Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
         });
-        repository.create(entity);
+        repository.insert(entity);
         await useCase.execute({
             id: entity.id,
         });

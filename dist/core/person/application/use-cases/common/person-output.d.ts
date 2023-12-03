@@ -21,7 +21,6 @@ export type PersonOutput = {
     address: string;
     birthdate: Date;
     biography?: string;
-    shareableSection?: string;
     isOpenToWork?: boolean;
     isFreelancer?: boolean;
     avatar?: string;
@@ -35,7 +34,6 @@ export type PersonAllOutput = {
     address: string;
     birthdate: Date;
     biography?: string;
-    shareableSection?: string;
     isOpenToWork?: boolean;
     isFreelancer?: boolean;
     avatar?: string;
@@ -54,7 +52,6 @@ export declare class PersonOutputMapper {
         address: string;
         birthdate: Date;
         biography: string;
-        shareableSection: string;
         isOpenToWork: boolean;
         isFreelancer: boolean;
         avatar: string;

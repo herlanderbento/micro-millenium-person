@@ -15,7 +15,6 @@ class Person extends aggregate_root_1.AggregateRoot {
         super(props, entityId ?? new PersonId());
         this.props = props;
         this.biography = this.props.biography ?? null;
-        this.shareableSection = this.props.shareableSection ?? null;
         this.isOpenToWork = this.props.isOpenToWork ?? true;
         this.isFreelancer = this.props.isFreelancer ?? true;
         this.avatar = this.props.avatar ?? null;
@@ -45,12 +44,6 @@ class Person extends aggregate_root_1.AggregateRoot {
     }
     set address(value) {
         this.props.address = value;
-    }
-    get shareableSection() {
-        return this.props.shareableSection;
-    }
-    set shareableSection(value) {
-        this.props.shareableSection = value ?? null;
     }
     get birthdate() {
         return this.props.birthdate;
@@ -82,17 +75,14 @@ class Person extends aggregate_root_1.AggregateRoot {
     get updatedAt() {
         return this.props.updatedAt;
     }
+    static create(props) {
+        const person = new Person(props);
+        return person;
+    }
     update(props) {
-        this.gender = props.gender;
-        this.biography = props.biography;
-        this.address = props.address;
-        this.birthdate = props.birthdate;
-        this.shareableSection = props.shareableSection;
-        this.isOpenToWork = props.isOpenToWork;
-        this.isFreelancer = props.isFreelancer;
+        Object.assign(this.props, { ...props });
     }
     updateAvatar(avatar) {
-        console.log(avatar, 'avatar2');
         this.avatar = avatar;
     }
     static validate(props) {
@@ -125,7 +115,6 @@ class Person extends aggregate_root_1.AggregateRoot {
             address: this.address,
             birthdate: this.birthdate,
             biography: this.biography,
-            shareableSection: this.shareableSection,
             isOpenToWork: this.isOpenToWork,
             isFreelancer: this.isFreelancer,
             avatar: this.avatar,

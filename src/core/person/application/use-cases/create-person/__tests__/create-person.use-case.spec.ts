@@ -11,7 +11,7 @@ describe('CreatePersonUseCase Unit Tests', () => {
   });
 
   it('should create a Person', async () => {
-    const spyCreate = jest.spyOn(repository, 'create');
+    const spyCreate = jest.spyOn(repository, 'insert');
     let output = await useCase.execute({
       userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
       gender: 'male',
@@ -26,7 +26,6 @@ describe('CreatePersonUseCase Unit Tests', () => {
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
       biography: null,
-      shareableSection: null,
       isOpenToWork: true,
       isFreelancer: true,
       avatar: null,

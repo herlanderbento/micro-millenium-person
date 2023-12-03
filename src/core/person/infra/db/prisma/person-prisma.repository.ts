@@ -8,17 +8,18 @@ import {
 import { prismaClient } from '../../../../shared/infra/prisma/prisma-client';
 import { PersonPrismaMapper } from './person-prisma.mapper';
 import { NotFoundError } from '../../../../shared/domain';
+import { Prisma } from '@prisma/client';
 
 export class PersonPrismaRepository implements IPersonRepository {
   sortableFields: string[] = ['createdAt'];
 
-  async create(entity: Person): Promise<void> {
+  async insert(entity: Person): Promise<void> {
     await prismaClient.person.create({
       data: PersonPrismaMapper.toModel(entity),
     });
   }
 
-  async bulkCreate(entities: Person[]): Promise<void> {
+  async bulkInsert(entities: Person[]): Promise<void> {
     const modelsProps = entities.map((entity) =>
       PersonPrismaMapper.toModel(entity)
     );
@@ -28,13 +29,27 @@ export class PersonPrismaRepository implements IPersonRepository {
     });
   }
 
-  async findById(id: string | PersonId): Promise<Person> {
+  async findById(id: string | PersonId, unrelated?: boolean): Promise<Person> {
     const _id = `${id}`;
 
-    const model = await prismaClient.person.findUnique({
+    const baseQuery: Prisma.PersonFindUniqueArgs = {
       where: { id: _id },
+    };
+
+    if (unrelated === true) {
+      const model = await prismaClient.person.findUnique(baseQuery);
+
+      if (!model) {
+        throw new NotFoundError(`Entity Not Found using ID ${_id}`);
+      }
+      
+      return model ? PersonPrismaMapper.toEntity(model) : null;
+    }
+
+    const model = await prismaClient.person.findUnique({
+      ...baseQuery,
       include: {
-        educations: true, 
+        educations: true,
       },
     });
 
@@ -42,8 +57,8 @@ export class PersonPrismaRepository implements IPersonRepository {
       throw new NotFoundError(`Entity Not Found using ID ${_id}`);
     }
 
-    return model as any
-    return PersonPrismaMapper.toEntity(model);
+    //@ts-ignore
+    return PersonPrismaMapper.toAllModel(model);
   }
 
   async update(entity: Person): Promise<Person> {

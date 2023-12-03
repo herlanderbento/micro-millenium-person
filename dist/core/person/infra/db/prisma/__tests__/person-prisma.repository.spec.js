@@ -13,8 +13,8 @@ describe('PersonPrismaRepository', () => {
     });
     it('should create a new entity', async () => {
         const person = domain_1.Person.fake().aPerson().build();
-        await repository.create(person);
-        const entity = await repository.findById(person.id);
+        await repository.insert(person);
+        const entity = await repository.findById(person.id, true);
         expect(entity.toJSON()).toStrictEqual(person.toJSON());
     });
     it('should throws error when entity is not found', async () => {
@@ -23,19 +23,19 @@ describe('PersonPrismaRepository', () => {
     });
     it('should find a entity by id', async () => {
         const entity = domain_1.Person.fake().aPerson().build();
-        await repository.create(entity);
-        let output = await repository.findById(entity.id);
+        await repository.insert(entity);
+        let output = await repository.findById(entity.id, true);
         expect(entity.toJSON()).toStrictEqual(output.toJSON());
     });
     it('should return all persons', async () => {
         const entity = domain_1.Person.fake().aPerson().build();
-        await repository.create(entity);
+        await repository.insert(entity);
         const entities = await repository.findAll();
         expect(entities).toHaveLength(entities.length);
     });
     it('should update a entity', async () => {
         const entity = domain_1.Person.fake().aPerson().build();
-        await repository.create(entity);
+        await repository.insert(entity);
         const updateEntity = domain_1.Person.fake()
             .aPerson()
             .withAddress('toronto')
@@ -43,12 +43,12 @@ describe('PersonPrismaRepository', () => {
             .build();
         entity.update(updateEntity);
         await repository.update(entity);
-        let entityFound = await repository.findById(entity.id);
+        let entityFound = await repository.findById(entity.id, true);
         expect(entity.toJSON()).toStrictEqual(entityFound.toJSON());
     });
     it('should delete a entity', async () => {
         const entity = domain_1.Person.fake().aPerson().build();
-        await repository.create(entity);
+        await repository.insert(entity);
         await repository.delete(entity.id);
         await expect(repository.findById(entity.id)).rejects.toThrow(new domain_2.NotFoundError(`Entity Not Found using ID ${entity.id}`));
     });
@@ -59,7 +59,7 @@ describe('PersonPrismaRepository', () => {
                 .thePersons(16)
                 .withCreatedAt(createdAt)
                 .build();
-            await repository.bulkCreate(persons);
+            await repository.bulkInsert(persons);
             const spyToEntity = jest.spyOn(person_prisma_mapper_1.PersonPrismaMapper, 'toEntity');
             const searchOutput = await repository.search(new domain_1.PersonSearchParams());
             expect(searchOutput).toBeInstanceOf(domain_1.PersonSearchResult);

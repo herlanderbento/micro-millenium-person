@@ -67,8 +67,8 @@ describe('ListPersonsUseCase Unit Tests', () => {
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
             createdAt: new Date(new Date().getTime() + 100),
         });
-        repository.create(entity1);
-        repository.create(entity2);
+        repository.insert(entity1);
+        repository.insert(entity2);
         const output = await useCase.execute({});
         const expectedItems = [entity1, entity2].map((item) => item.toJSON());
         expect(output).toMatchObject({

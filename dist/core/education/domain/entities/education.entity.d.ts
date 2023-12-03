@@ -16,17 +16,6 @@ export type EducationProperties = {
     updatedAt?: Date;
 };
 export type EducationCreateCommand = Omit<EducationProperties, 'createdAt' | 'updatedAt'>;
-export type EducationUpdateCommand = {
-    title: string;
-    educationType: string;
-    institute: string;
-    description: string;
-    address?: string;
-    startDate: Date;
-    endDate?: Date;
-    isCurrent?: boolean;
-    isVerified?: boolean;
-};
 export type EducationPropsJson = Required<{
     id: string;
 } & EducationProperties>;
@@ -61,7 +50,7 @@ export declare class Education extends AggregateRoot<EducationId, EducationPrope
     uncurrently(): void;
     verified(): void;
     unverified(): void;
-    update(props: EducationUpdateCommand): void;
+    update(props: Partial<EducationProperties>): void;
     static create(props: EducationCreateCommand): Education;
     static validate(props: EducationProperties): void;
     static fake(): typeof EducationFakeBuilder;

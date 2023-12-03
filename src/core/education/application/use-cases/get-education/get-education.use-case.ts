@@ -11,10 +11,6 @@ export class GetEducationUseCase
   async execute(input: GetEducationInput): Promise<GetEducationOutput> {
     const education = await this.educationRepository.findById(input.id);
 
-    if (!education) {
-      throw new NotFoundError(`education not found`);
-    }
-
     return EducationOutputMapper.toOutput(education);
   }
 }

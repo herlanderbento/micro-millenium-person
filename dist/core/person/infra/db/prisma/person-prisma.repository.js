@@ -7,21 +7,28 @@ const person_prisma_mapper_1 = require("./person-prisma.mapper");
 const domain_2 = require("../../../../shared/domain");
 class PersonPrismaRepository {
     sortableFields = ['createdAt'];
-    async create(entity) {
+    async insert(entity) {
         await prisma_client_1.prismaClient.person.create({
             data: person_prisma_mapper_1.PersonPrismaMapper.toModel(entity),
         });
     }
-    async bulkCreate(entities) {
+    async bulkInsert(entities) {
         const modelsProps = entities.map((entity) => person_prisma_mapper_1.PersonPrismaMapper.toModel(entity));
         await prisma_client_1.prismaClient.person.createMany({
             data: modelsProps,
         });
     }
-    async findById(id) {
+    async findById(id, unrelated) {
         const _id = `${id}`;
-        const model = await prisma_client_1.prismaClient.person.findUnique({
+        const baseQuery = {
             where: { id: _id },
+        };
+        if (unrelated === true) {
+            const model = await prisma_client_1.prismaClient.person.findUnique(baseQuery);
+            return model ? person_prisma_mapper_1.PersonPrismaMapper.toEntity(model) : null;
+        }
+        const model = await prisma_client_1.prismaClient.person.findUnique({
+            ...baseQuery,
             include: {
                 educations: true,
             },
@@ -29,8 +36,7 @@ class PersonPrismaRepository {
         if (!model) {
             throw new domain_2.NotFoundError(`Entity Not Found using ID ${_id}`);
         }
-        return model;
-        return person_prisma_mapper_1.PersonPrismaMapper.toEntity(model);
+        return person_prisma_mapper_1.PersonPrismaMapper.toAllModel(model);
     }
     async update(entity) {
         const model = await prisma_client_1.prismaClient.person.update({

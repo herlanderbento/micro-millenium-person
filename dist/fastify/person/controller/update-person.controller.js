@@ -6,7 +6,7 @@ const validation_1 = require("../validation");
 class UpdatePersonController {
     async handle(request, reply) {
         const { id } = validation_1.personIdSchemaValidation.parse(request.params);
-        const { gender, address, birthdate, biography, shareableSection } = validation_1.updatePersonBodySchemaValidation.parse(request.body);
+        const { gender, address, birthdate, biography, isOpenToWork, isFreelancer } = validation_1.updatePersonBodySchemaValidation.parse(request.body);
         const getPersonUseCase = application_1.UpdatePersonUseCaseFactory.create();
         const output = await getPersonUseCase.execute({
             id,
@@ -14,7 +14,8 @@ class UpdatePersonController {
             address,
             birthdate: new Date(birthdate),
             biography,
-            shareableSection,
+            isOpenToWork,
+            isFreelancer
         });
         return reply.status(201).send(output);
     }

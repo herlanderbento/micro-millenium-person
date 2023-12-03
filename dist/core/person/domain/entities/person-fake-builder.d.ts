@@ -7,7 +7,6 @@ export declare class PersonFakeBuilder<TBuild = any> {
     private _address;
     private _birthdate;
     private _biography;
-    private _shareableSection;
     private _avatar;
     private _isOpenToWork;
     private _isFreelancer;
@@ -24,7 +23,6 @@ export declare class PersonFakeBuilder<TBuild = any> {
     withAddress(valueOrFactory: PropOrFactory<string>): this;
     withBirthdate(valueOrFactory: PropOrFactory<Date>): this;
     withBiography(valueOrFactory: PropOrFactory<string>): this;
-    withShareableSection(valueOrFactory: PropOrFactory<string>): this;
     activateForWork(): this;
     deactivateForWork(): this;
     activateForFreelancer(): this;
@@ -42,7 +40,6 @@ export declare class PersonFakeBuilder<TBuild = any> {
     get address(): any;
     get birthdate(): any;
     get biography(): any;
-    get shareableSection(): any;
     get isOpenToWork(): any;
     get isFreelancer(): any;
     get avatar(): any;

@@ -16,11 +16,11 @@ export abstract class InMemoryRepository<
 {
   items: E[] = [];
 
-  async create(entity: E): Promise<void> {
+  async insert(entity: E): Promise<void> {
     this.items.push(entity);
   }
 
-  async bulkCreate(entities: E[]): Promise<void> {
+  async bulkInsert(entities: E[]): Promise<void> {
     this.items.push(...entities);
   }
 

@@ -13,7 +13,7 @@ class CreateEducationUseCase {
     async execute(input) {
         await this.personRepository.findById(input.personId);
         const education = domain_1.Education.create(input);
-        await this.educationRepository.create(education);
+        await this.educationRepository.insert(education);
         return common_1.EducationOutputMapper.toOutput(education);
     }
 }

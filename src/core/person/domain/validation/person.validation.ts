@@ -29,11 +29,6 @@ export class PersonRules {
   @IsNotEmpty()
   address: string;
 
-  @MaxLength(255)
-  @IsString()
-  @IsOptional()
-  shareableSection: string;
-
   @IsBoolean()
   @IsOptional()
   isOpenToWork: boolean;

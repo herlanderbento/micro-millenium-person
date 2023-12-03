@@ -14,9 +14,9 @@ describe('CreateEducationUseCase Unit Tests', () => {
         useCase = new create_education_use_case_1.CreateEducationUseCase(repository, personRepository);
     });
     it('should create a education with default values', async () => {
-        const spyCreate = jest.spyOn(repository, 'create');
+        const spyCreate = jest.spyOn(repository, 'insert');
         let person = domain_1.Person.fake().aPerson().build();
-        personRepository.create(person);
+        personRepository.insert(person);
         let output = await useCase.execute({
             personId: personRepository.items[0].id,
             title: 'some education',
@@ -24,6 +24,9 @@ describe('CreateEducationUseCase Unit Tests', () => {
             institute: 'some institute',
             startDate: new Date('2023-07-15T09:29:58.242Z'),
             description: 'some description',
+            isCurrent: false,
+            isVerified: false,
+            address: null,
         });
         expect(spyCreate).toBeCalledTimes(1);
         expect(output).toMatchObject({
@@ -43,9 +46,9 @@ describe('CreateEducationUseCase Unit Tests', () => {
         expect(output.updatedAt).toBeInstanceOf(Date);
     });
     it('should create a education with all values', async () => {
-        const spyCreate = jest.spyOn(repository, 'create');
+        const spyCreate = jest.spyOn(repository, 'insert');
         let person = domain_1.Person.fake().aPerson().build();
-        personRepository.create(person);
+        personRepository.insert(person);
         let output = await useCase.execute({
             personId: personRepository.items[0].id,
             title: 'some education',

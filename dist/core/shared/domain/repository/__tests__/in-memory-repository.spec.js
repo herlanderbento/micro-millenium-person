@@ -26,7 +26,7 @@ describe('InMemoryRepository Unit Tests', () => {
     beforeEach(() => (repository = new StubInMemoryRepository()));
     it('should inserts a new entity', async () => {
         const entity = new StubEntity({ name: 'name value', price: 5 });
-        await repository.create(entity);
+        await repository.insert(entity);
         expect(entity.toJSON()).toStrictEqual(repository.items[0].toJSON());
     });
     it('should throws error when entity not found', async () => {
@@ -35,7 +35,7 @@ describe('InMemoryRepository Unit Tests', () => {
     });
     it('should finds a entity by id', async () => {
         const entity = new StubEntity({ name: 'name value', price: 5 });
-        await repository.create(entity);
+        await repository.insert(entity);
         let entityFound = await repository.findById(entity.id);
         expect(entity.toJSON()).toStrictEqual(entityFound.toJSON());
         entityFound = await repository.findById(entity.entityId);
@@ -43,7 +43,7 @@ describe('InMemoryRepository Unit Tests', () => {
     });
     it('should returns all entities', async () => {
         const entity = new StubEntity({ name: 'name value', price: 5 });
-        await repository.create(entity);
+        await repository.insert(entity);
         const entities = await repository.findAll();
         expect(entities).toStrictEqual([entity]);
     });
@@ -53,7 +53,7 @@ describe('InMemoryRepository Unit Tests', () => {
     });
     it('should updates an entity', async () => {
         const entity = new StubEntity({ name: 'name value', price: 5 });
-        await repository.create(entity);
+        await repository.insert(entity);
         const entityUpdated = new StubEntity({ name: 'updated', price: 1 }, entity.entityId);
         await repository.update(entityUpdated);
         expect(entityUpdated.toJSON()).toStrictEqual(repository.items[0].toJSON());
@@ -64,10 +64,10 @@ describe('InMemoryRepository Unit Tests', () => {
     });
     it('should deletes an entity', async () => {
         const entity = new StubEntity({ name: 'name value', price: 5 });
-        await repository.create(entity);
+        await repository.insert(entity);
         await repository.delete(entity.id);
         expect(repository.items).toHaveLength(0);
-        await repository.create(entity);
+        await repository.insert(entity);
         await repository.delete(entity.entityId);
         expect(repository.items).toHaveLength(0);
     });

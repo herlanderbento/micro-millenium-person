@@ -5,7 +5,6 @@ export declare class PersonRules {
     gender: GenderType | string;
     biography: string;
     address: string;
-    shareableSection: string;
     isOpenToWork: boolean;
     isFreelancer: boolean;
     avatar: string;

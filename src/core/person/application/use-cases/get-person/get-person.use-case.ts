@@ -1,11 +1,6 @@
 import { IPersonRepository } from '../../../domain';
 import { IUseCase } from '../../../../shared/application/use-cases';
-import { NotFoundError } from '../../../../shared/domain';
-import {
-  PersonOutput,
-  PersonOutputMapper,
-  PersonAllOutput,
-} from '../common';
+import { PersonOutputMapper, PersonAllOutput } from '../common';
 
 export class GetPersonUseCase implements IUseCase<GetPersonInput, Output> {
   constructor(private personRepository: IPersonRepository) {}

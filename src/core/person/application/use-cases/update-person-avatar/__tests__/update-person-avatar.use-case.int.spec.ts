@@ -12,28 +12,32 @@ describe('UpdatePersonAvatar Unit Tests', () => {
     useCase = new UpdatePersonAvatarUseCase(repository);
   });
 
-  it('should throws error when entity not found', async () => {
-    await expect(() =>
-      useCase.execute({
-        id: 'fake id',
-        avatar: 'some avatar',
-      })
-    ).rejects.toThrow(new NotFoundError(`Entity Not Found using ID fake id`));
+  it('should throw error when entity not found', async () => {
+    const input = {
+      id: 'fake id',
+      avatar: 'some avatar',
+    };
+
+    await expect(() => useCase.execute(input)).rejects.toThrow(
+      new NotFoundError(`Entity Not Found using ID fake id`)
+    );
   });
 
   it('should update a person avatar', async () => {
-    const entity = new Person({
+    const entity = Person.create({
       userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
       gender: 'male',
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
     });
-    await repository.create(entity);
+    await repository.insert(entity);
 
-    const output = await useCase.execute({
+    const input = {
       id: entity.id,
       avatar: 'some avatar',
-    });
+    };
+
+    const output = await useCase.execute(input);
 
     expect(output).toStrictEqual({
       id: entity.id,
@@ -42,7 +46,6 @@ describe('UpdatePersonAvatar Unit Tests', () => {
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
       biography: entity.biography,
-      shareableSection: entity.shareableSection,
       isOpenToWork: entity.isOpenToWork,
       isFreelancer: entity.isFreelancer,
       avatar: 'some avatar',

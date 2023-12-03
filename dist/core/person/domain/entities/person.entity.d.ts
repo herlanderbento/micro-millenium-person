@@ -8,7 +8,6 @@ export type PersonProperties = {
     address: string;
     birthdate: Date;
     biography?: string;
-    shareableSection?: string;
     isOpenToWork?: boolean;
     isFreelancer?: boolean;
     avatar?: string;
@@ -26,13 +25,11 @@ export declare class Person extends AggregateRoot<PersonId, PersonProperties, Pe
     get userId(): string;
     private set userId(value);
     get gender(): GenderType | string;
-    private set gender(value);
+    set gender(value: GenderType | string);
     get biography(): string;
     private set biography(value);
     get address(): string;
     private set address(value);
-    get shareableSection(): string;
-    private set shareableSection(value);
     get birthdate(): Date;
     private set birthdate(value);
     get isOpenToWork(): boolean;
@@ -43,7 +40,8 @@ export declare class Person extends AggregateRoot<PersonId, PersonProperties, Pe
     private set avatar(value);
     get createdAt(): Date;
     get updatedAt(): Date;
-    update(props: Omit<PersonProperties, 'userId' | 'avatar'>): void;
+    static create(props: PersonProperties): Person;
+    update(props: Partial<PersonProperties>): void;
     updateAvatar(avatar: string): void;
     static validate(props: PersonProperties): void;
     static fake(): typeof PersonFakeBuilder;

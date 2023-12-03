@@ -1,7 +1,7 @@
 import { GenderType, Person } from '../../../domain';
 
 interface EducationProps {
-  id: string
+  id: string;
   personId: string;
   title: string;
   educationType: string;
@@ -23,7 +23,6 @@ export type PersonOutput = {
   address: string;
   birthdate: Date;
   biography?: string;
-  shareableSection?: string;
   isOpenToWork?: boolean;
   isFreelancer?: boolean;
   avatar?: string;
@@ -38,7 +37,6 @@ export type PersonAllOutput = {
   address: string;
   birthdate: Date;
   biography?: string;
-  shareableSection?: string;
   isOpenToWork?: boolean;
   isFreelancer?: boolean;
   avatar?: string;
@@ -55,16 +53,15 @@ export class PersonOutputMapper {
   static toAllOutput(entity: PersonAllOutput) {
     return {
       id: entity.id,
-      userId: entity.gender,
+      userId: entity.userId,
       gender: entity.gender,
       address: entity.address,
       birthdate: entity.birthdate,
       biography: entity.biography,
-      shareableSection: entity.shareableSection,
       isOpenToWork: entity.isOpenToWork,
       isFreelancer: entity.isFreelancer,
       avatar: entity.avatar,
-      educations: entity.educations.map((item) => ({
+      educations: entity.educations?.map((item) => ({
         id: item.id,
         personId: item.personId,
         title: item.title,

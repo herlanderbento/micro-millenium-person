@@ -11,7 +11,9 @@ exports.createPersonBodySchemaValidation = zod_1.z.object({
     })
         .trim()
         .min(1, { message: 'userId is required' }),
-    gender: zod_1.z.enum(GENDER),
+    gender: zod_1.z.string().refine((value) => value === 'male' || value === 'female', {
+        message: "gender must be 'male' or 'female'",
+    }),
     address: zod_1.z
         .string({
         required_error: 'address is required',
@@ -19,15 +21,11 @@ exports.createPersonBodySchemaValidation = zod_1.z.object({
     })
         .trim()
         .min(1, { message: 'address is required' }),
-    birthdate: zod_1.z
-        .string({
+    birthdate: zod_1.z.string({
         required_error: 'birthdate is required',
         invalid_type_error: "That's not a date!",
-    })
-        .trim()
-        .min(1, { message: 'birthdate is required' }),
+    }),
     biography: zod_1.z.string().optional(),
-    shareableSection: zod_1.z.string().optional(),
     isOpenToWork: zod_1.z.boolean().optional(),
     isFreelancer: zod_1.z.boolean().optional(),
 });
@@ -57,7 +55,8 @@ exports.updatePersonBodySchemaValidation = zod_1.z.object({
         .trim()
         .min(1, { message: 'birthdate is required' }),
     biography: zod_1.z.string().optional(),
-    shareableSection: zod_1.z.string().optional(),
+    isOpenToWork: zod_1.z.boolean().optional(),
+    isFreelancer: zod_1.z.boolean().optional(),
 });
 exports.updatePersonAvatarBodySchemaValidation = zod_1.z.object({
     avatar: zod_1.z

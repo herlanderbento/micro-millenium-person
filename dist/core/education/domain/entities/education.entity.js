@@ -100,23 +100,9 @@ class Education extends domain_1.AggregateRoot {
     update(props) {
         Education.validate({
             ...this.props,
-            title: props.title,
-            educationType: props.educationType,
-            institute: props.institute,
-            description: props.description,
-            address: props.address,
-            isCurrent: props.isCurrent,
-            isVerified: props.isVerified,
+            ...props,
         });
-        this.title = props.title;
-        this.description = props.description;
-        this.institute = props.institute;
-        this.educationType = props.educationType;
-        this.address = props.address;
-        this.startDate = props.startDate;
-        this.endDate = props.endDate;
-        this.isCurrent = props.isCurrent;
-        this.isVerified = props.isVerified;
+        Object.assign(this.props, { ...props });
     }
     static create(props) {
         const education = new Education(props);

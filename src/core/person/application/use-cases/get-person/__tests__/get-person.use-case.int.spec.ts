@@ -2,11 +2,9 @@ import { Person } from '../../../../domain';
 import { PersonPrismaRepository } from '../../../../infra';
 import { NotFoundError } from '../../../../../shared/domain';
 import { GetPersonUseCase } from '../get-person.use-case';
-import { PrismaClient } from '@prisma/client';
 import { setupPrismaTests } from '../../../../../shared/infra';
 
 describe('GetPersonUseCase Integration Tests', () => {
-  const prismaService = new PrismaClient();
   let repository: PersonPrismaRepository;
   let useCase: GetPersonUseCase;
 
@@ -36,19 +34,18 @@ describe('GetPersonUseCase Integration Tests', () => {
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
     });
-    repository.create(entity);
+    repository.insert(entity);
 
     let output = await useCase.execute({
       id: entity.id,
     });
-    expect(output).toStrictEqual({
+    expect(output).toMatchObject({
       id: entity.id,
       userId: entity.userId,
       gender: 'male',
       address: 'address',
       birthdate: new Date('2001-07-15T09:29:58.242Z'),
       biography: entity.biography,
-      shareableSection: entity.shareableSection,
       isOpenToWork: entity.isOpenToWork,
       isFreelancer: entity.isFreelancer,
       avatar: entity.avatar,

@@ -17,7 +17,7 @@ export class CreateEducationUseCase
 
     const education = Education.create(input);
 
-    await this.educationRepository.create(education);
+    await this.educationRepository.insert(education);
 
     return EducationOutputMapper.toOutput(education);
   }

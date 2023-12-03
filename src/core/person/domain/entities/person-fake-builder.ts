@@ -18,9 +18,6 @@ export class PersonFakeBuilder<TBuild = any> {
   private _biography: PropOrFactory<string> | undefined = (_index) =>
     this.chance.paragraph();
 
-  private _shareableSection: PropOrFactory<string> | undefined = (_index) =>
-    this.chance.word();
-
   private _avatar: PropOrFactory<string> | undefined = (_index) =>
     this.chance.avatar();
 
@@ -76,11 +73,6 @@ export class PersonFakeBuilder<TBuild = any> {
 
   withBiography(valueOrFactory: PropOrFactory<string>): this {
     this._biography = valueOrFactory;
-    return this;
-  }
-
-  withShareableSection(valueOrFactory: PropOrFactory<string>): this {
-    this._shareableSection = valueOrFactory;
     return this;
   }
 
@@ -144,7 +136,6 @@ export class PersonFakeBuilder<TBuild = any> {
             gender: this.callFactory(this._gender, index),
             biography: this.callFactory(this._biography, index),
             address: this.callFactory(this._address, index),
-            shareableSection: this.callFactory(this._shareableSection, index),
             birthdate: this.callFactory(this._birthdate, index),
             isOpenToWork: this.callFactory(this._isOpenToWork, index),
             isFreelancer: this.callFactory(this._isFreelancer, index),
@@ -185,10 +176,6 @@ export class PersonFakeBuilder<TBuild = any> {
 
   get biography() {
     return this.getValue('biography');
-  }
-
-  get shareableSection() {
-    return this.getValue('shareableSection');
   }
 
   get isOpenToWork() {

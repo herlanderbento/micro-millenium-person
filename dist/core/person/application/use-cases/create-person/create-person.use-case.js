@@ -9,8 +9,8 @@ class CreatePersonUseCase {
         this.personRepository = personRepository;
     }
     async execute(input) {
-        const entity = new domain_1.Person(input);
-        await this.personRepository.create(entity);
+        const entity = domain_1.Person.create(input);
+        await this.personRepository.insert(entity);
         return common_1.PersonOutputMapper.toOutput(entity);
     }
 }

@@ -11,19 +11,18 @@ datasource db {
 }
 
 model Person {
-  id               String      @id
-  userId           String?
-  gender           String
-  address          String
-  birthdate        DateTime
-  biography        String?
-  shareableSection String?
-  isOpenToWork     Boolean?
-  isFreelancer     Boolean?
-  avatar           String?
-  createdAt        DateTime
-  updatedAt        DateTime
-  educations       Education[]
+  id           String      @id
+  userId       String?
+  gender       String
+  address      String
+  birthdate    DateTime
+  biography    String?
+  isOpenToWork Boolean?
+  isFreelancer Boolean?
+  avatar       String?
+  createdAt    DateTime
+  updatedAt    DateTime
+  educations   Education[]
 }
 
 model Education {

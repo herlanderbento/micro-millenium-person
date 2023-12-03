@@ -12,7 +12,6 @@ export type PersonProperties = {
   address: string;
   birthdate: Date;
   biography?: string;
-  shareableSection?: string;
   isOpenToWork?: boolean;
   isFreelancer?: boolean;
   avatar?: string;
@@ -33,7 +32,6 @@ export class Person extends AggregateRoot<
     super(props, entityId ?? new PersonId());
     // Person.validate(props);
     this.biography = this.props.biography ?? null;
-    this.shareableSection = this.props.shareableSection ?? null;
     this.isOpenToWork = this.props.isOpenToWork ?? true;
     this.isFreelancer = this.props.isFreelancer ?? true;
     this.avatar = this.props.avatar ?? null;
@@ -53,7 +51,7 @@ export class Person extends AggregateRoot<
     return this.props.gender;
   }
 
-  private set gender(value: GenderType | string) {
+  set gender(value: GenderType | string) {
     this.props.gender = value;
   }
 
@@ -71,14 +69,6 @@ export class Person extends AggregateRoot<
 
   private set address(value: string) {
     this.props.address = value;
-  }
-
-  get shareableSection(): string {
-    return this.props.shareableSection;
-  }
-
-  private set shareableSection(value: string) {
-    this.props.shareableSection = value ?? null;
   }
 
   get birthdate(): Date {
@@ -121,39 +111,16 @@ export class Person extends AggregateRoot<
     return this.props.updatedAt;
   }
 
-  // static create(props: PersonProperties): Person {
-  //   const Person = new Person(props);
-  //   Person.validate(Person);
-  //   return Person;
-  // }
-
-  update(props: Omit<PersonProperties, 'userId' | 'avatar'>): void {
-    // Person.validate({
-    //   ...this.props,
-    //   gender: props.gender,
-    //   biography: props.biography,
-    //   address: props.address,
-    //   birthdate: props.birthdate,
-    //   shareableSection: props.shareableSection,
-    //   isOpenToWork: props.isOpenToWork,
-    //   isFreelancer: props.isFreelancer,
-    // });
-
-    this.gender = props.gender;
-    this.biography = props.biography;
-    this.address = props.address;
-    this.birthdate = props.birthdate;
-    this.shareableSection = props.shareableSection;
-    this.isOpenToWork = props.isOpenToWork;
-    this.isFreelancer = props.isFreelancer;
+  static create(props: PersonProperties): Person {
+    const person = new Person(props);
+    return person;
   }
 
-  updateAvatar(avatar: string): void {
-    console.log(avatar, 'avatar2')
-    // Person.validate({
-    //   ...this.props,
-    //   avatar,
-    // });
+  update(props: Partial<PersonProperties>) {
+    Object.assign(this.props, { ...props });
+  }
+
+  updateAvatar(avatar: string) {
     this.avatar = avatar;
   }
 
@@ -193,7 +160,6 @@ export class Person extends AggregateRoot<
       address: this.address,
       birthdate: this.birthdate,
       biography: this.biography,
-      shareableSection: this.shareableSection,
       isOpenToWork: this.isOpenToWork,
       isFreelancer: this.isFreelancer,
       avatar: this.avatar,

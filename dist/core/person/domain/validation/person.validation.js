@@ -20,7 +20,6 @@ class PersonRules {
     gender;
     biography;
     address;
-    shareableSection;
     isOpenToWork;
     isFreelancer;
     avatar;
@@ -54,12 +53,6 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], PersonRules.prototype, "address", void 0);
-__decorate([
-    (0, class_validator_1.MaxLength)(255),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], PersonRules.prototype, "shareableSection", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),

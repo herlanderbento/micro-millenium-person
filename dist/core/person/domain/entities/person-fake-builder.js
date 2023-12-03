@@ -10,7 +10,6 @@ class PersonFakeBuilder {
     _address = (_index) => this.chance.address();
     _birthdate = (_index) => this.chance.date();
     _biography = (_index) => this.chance.paragraph();
-    _shareableSection = (_index) => this.chance.word();
     _avatar = (_index) => this.chance.avatar();
     _isOpenToWork = (_index) => true;
     _isFreelancer = (_index) => true;
@@ -50,10 +49,6 @@ class PersonFakeBuilder {
     }
     withBiography(valueOrFactory) {
         this._biography = valueOrFactory;
-        return this;
-    }
-    withShareableSection(valueOrFactory) {
-        this._shareableSection = valueOrFactory;
         return this;
     }
     activateForWork() {
@@ -105,7 +100,6 @@ class PersonFakeBuilder {
                 gender: this.callFactory(this._gender, index),
                 biography: this.callFactory(this._biography, index),
                 address: this.callFactory(this._address, index),
-                shareableSection: this.callFactory(this._shareableSection, index),
                 birthdate: this.callFactory(this._birthdate, index),
                 isOpenToWork: this.callFactory(this._isOpenToWork, index),
                 isFreelancer: this.callFactory(this._isFreelancer, index),
@@ -138,9 +132,6 @@ class PersonFakeBuilder {
     }
     get biography() {
         return this.getValue('biography');
-    }
-    get shareableSection() {
-        return this.getValue('shareableSection');
     }
     get isOpenToWork() {
         return this.getValue('isOpenToWork');

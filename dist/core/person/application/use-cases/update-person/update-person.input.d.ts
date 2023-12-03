@@ -5,5 +5,6 @@ export type UpdatePersonInput = {
     address: string;
     birthdate: Date;
     biography?: string;
-    shareableSection?: string;
+    isOpenToWork?: boolean;
+    isFreelancer?: boolean;
 };

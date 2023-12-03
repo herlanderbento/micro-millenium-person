@@ -220,37 +220,6 @@ describe('PersonFakeBuilder', () => {
             expect(faker['_biography']).toBe(tooLong);
         });
     });
-    describe('shareableSection props', () => {
-        const faker = person_fake_builder_1.PersonFakeBuilder.aPerson();
-        test('should be a function', () => {
-            expect(typeof faker['_shareableSection']).toBe('function');
-        });
-        test('should call the word method', () => {
-            const chance = (0, chance_1.Chance)();
-            const spyWordMethod = jest.spyOn(chance, 'word');
-            faker['chance'] = chance;
-            faker.build();
-            expect(spyWordMethod).toHaveBeenCalled();
-        });
-        test('withShareableSection', () => {
-            const $this = faker.withShareableSection('test shareableSection');
-            expect($this).toBeInstanceOf(person_fake_builder_1.PersonFakeBuilder);
-            expect(faker['_shareableSection']).toBe('test shareableSection');
-            faker.withShareableSection(() => 'test shareableSection');
-            expect(faker['_shareableSection']()).toBe('test shareableSection');
-            expect(faker.shareableSection).toBe('test shareableSection');
-        });
-        test('should pass index to shareableSection factory', () => {
-            faker.withShareableSection((index) => `test shareableSection ${index}`);
-            const person = faker.build();
-            expect(person.shareableSection).toBe(`test shareableSection 0`);
-            const fakerMany = person_fake_builder_1.PersonFakeBuilder.thePersons(2);
-            fakerMany.withShareableSection((index) => `test shareableSection ${index}`);
-            const persons = fakerMany.build();
-            expect(persons[0].shareableSection).toBe(`test shareableSection 0`);
-            expect(persons[1].shareableSection).toBe(`test shareableSection 1`);
-        });
-    });
     describe('isOpenToWork prop', () => {
         const faker = person_fake_builder_1.PersonFakeBuilder.aPerson();
         test('should be a function', () => {
@@ -401,7 +370,6 @@ describe('PersonFakeBuilder', () => {
         expect(typeof person.address === 'string').toBeTruthy();
         expect(person.birthdate).toBeInstanceOf(Date);
         expect(typeof person.biography === 'string').toBeTruthy();
-        expect(typeof person.shareableSection === 'string').toBeTruthy();
         expect(typeof person.avatar === 'string').toBeTruthy();
         expect(person.isOpenToWork).toBe(true);
         expect(person.isFreelancer).toBe(true);
@@ -418,7 +386,6 @@ describe('PersonFakeBuilder', () => {
             .withAddress('toronto')
             .withBirthdate(birthdate)
             .withBiography('some biography')
-            .withShareableSection('some shareableSection')
             .activateForWork()
             .activateForFreelancer()
             .withCreatedAt(createdAt)
@@ -430,7 +397,6 @@ describe('PersonFakeBuilder', () => {
         expect(person.address).toBe('toronto');
         expect(person.birthdate).toBe(birthdate);
         expect(person.biography).toBe('some biography');
-        expect(person.shareableSection).toBe('some shareableSection');
         expect(person.isOpenToWork).toBeTruthy();
         expect(person.isFreelancer).toBeTruthy();
         expect(person.createdAt).toBe(createdAt);
@@ -446,7 +412,6 @@ describe('PersonFakeBuilder', () => {
             expect(typeof person.address === 'string').toBeTruthy();
             expect(person.birthdate).toBeInstanceOf(Date);
             expect(typeof person.biography === 'string').toBeTruthy();
-            expect(typeof person.shareableSection === 'string').toBeTruthy();
             expect(typeof person.avatar === 'string').toBeTruthy();
             expect(person.isOpenToWork).toBe(true);
             expect(person.isFreelancer).toBe(true);
@@ -464,7 +429,6 @@ describe('PersonFakeBuilder', () => {
             .withAddress('toronto')
             .withBirthdate(birthdate)
             .withBiography('some biography')
-            .withShareableSection('some shareableSection')
             .activateForWork()
             .activateForFreelancer()
             .withCreatedAt(createdAt)
@@ -477,7 +441,6 @@ describe('PersonFakeBuilder', () => {
             expect(person.address).toBe('toronto');
             expect(person.birthdate).toBe(birthdate);
             expect(person.biography).toBe('some biography');
-            expect(person.shareableSection).toBe('some shareableSection');
             expect(person.isOpenToWork).toBeTruthy();
             expect(person.isFreelancer).toBeTruthy();
             expect(person.createdAt).toBe(createdAt);

@@ -7,12 +7,12 @@ const education_prisma_mapper_1 = require("./education-prisma.mapper");
 const domain_2 = require("../../../../shared/domain");
 class EducationPrismaRepository {
     sortableFields = ['title', 'createdAt'];
-    async create(entity) {
+    async insert(entity) {
         await prisma_client_1.prismaClient.education.create({
             data: education_prisma_mapper_1.EducationPrismaMapper.toModel(entity),
         });
     }
-    async bulkCreate(entities) {
+    async bulkInsert(entities) {
         const modelsProps = entities.map((entity) => education_prisma_mapper_1.EducationPrismaMapper.toModel(entity));
         await prisma_client_1.prismaClient.education.createMany({
             data: modelsProps,

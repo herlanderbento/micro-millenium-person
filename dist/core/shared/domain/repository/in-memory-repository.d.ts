@@ -5,8 +5,8 @@ import { SearchParams, SortDirection } from "./search-params";
 import { SearchResult } from "./search-result";
 export declare abstract class InMemoryRepository<E extends Entity, EntityId extends ValueObject> implements RepositoryInterface<E, EntityId> {
     items: E[];
-    create(entity: E): Promise<void>;
-    bulkCreate(entities: E[]): Promise<void>;
+    insert(entity: E): Promise<void>;
+    bulkInsert(entities: E[]): Promise<void>;
     findById(id: string | EntityId): Promise<E>;
     findAll(): Promise<E[]>;
     update(entity: E): Promise<E>;

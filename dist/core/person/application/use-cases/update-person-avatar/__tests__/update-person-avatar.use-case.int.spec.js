@@ -24,11 +24,12 @@ describe('UpdatePersonAvatar Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
         });
-        await repository.create(entity);
-        const output = await useCase.execute({
+        await repository.insert(entity);
+        const input = {
             id: entity.id,
             avatar: 'some avatar',
-        });
+        };
+        const output = await useCase.execute(input);
         expect(output).toStrictEqual({
             id: entity.id,
             userId: entity.userId,
@@ -36,7 +37,6 @@ describe('UpdatePersonAvatar Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
             biography: entity.biography,
-            shareableSection: entity.shareableSection,
             isOpenToWork: entity.isOpenToWork,
             isFreelancer: entity.isFreelancer,
             avatar: 'some avatar',

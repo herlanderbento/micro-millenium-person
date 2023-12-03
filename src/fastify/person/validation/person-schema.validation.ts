@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { CreatePersonInput } from '../../../core/person/application';
+import { values } from 'lodash';
 
 const GENDER = ['male', 'female'] as const;
 
@@ -10,7 +12,9 @@ export const createPersonBodySchemaValidation = z.object({
     })
     .trim()
     .min(1, { message: 'userId is required' }),
-  gender: z.enum(GENDER),
+  gender: z.string().refine((value) => value === 'male' || value === 'female', {
+    message: "gender must be 'male' or 'female'",
+  }),
   address: z
     .string({
       required_error: 'address is required',
@@ -18,15 +22,11 @@ export const createPersonBodySchemaValidation = z.object({
     })
     .trim()
     .min(1, { message: 'address is required' }),
-  birthdate: z
-    .string({
-      required_error: 'birthdate is required',
-      invalid_type_error: "That's not a date!",
-    })
-    .trim()
-    .min(1, { message: 'birthdate is required' }),
+  birthdate: z.string({
+    required_error: 'birthdate is required',
+    invalid_type_error: "That's not a date!",
+  }),
   biography: z.string().optional(),
-  shareableSection: z.string().optional(),
   isOpenToWork: z.boolean().optional(),
   isFreelancer: z.boolean().optional(),
 });
@@ -58,7 +58,8 @@ export const updatePersonBodySchemaValidation = z.object({
     .trim()
     .min(1, { message: 'birthdate is required' }),
   biography: z.string().optional(),
-  shareableSection: z.string().optional(),
+  isOpenToWork: z.boolean().optional(),
+  isFreelancer: z.boolean().optional(),
 });
 
 export const updatePersonAvatarBodySchemaValidation = z.object({

@@ -8,16 +8,15 @@ class PersonOutputMapper {
     static toAllOutput(entity) {
         return {
             id: entity.id,
-            userId: entity.gender,
+            userId: entity.userId,
             gender: entity.gender,
             address: entity.address,
             birthdate: entity.birthdate,
             biography: entity.biography,
-            shareableSection: entity.shareableSection,
             isOpenToWork: entity.isOpenToWork,
             isFreelancer: entity.isFreelancer,
             avatar: entity.avatar,
-            educations: entity.educations.map((item) => ({
+            educations: entity.educations?.map((item) => ({
                 id: item.id,
                 personId: item.personId,
                 title: item.title,

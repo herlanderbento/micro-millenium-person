@@ -9,7 +9,7 @@ export class UpdatePersonController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const { id } = personIdSchemaValidation.parse(request.params);
 
-    const { gender, address, birthdate, biography, shareableSection } =
+    const { gender, address, birthdate, biography, isOpenToWork, isFreelancer } =
       updatePersonBodySchemaValidation.parse(request.body);
 
     const getPersonUseCase = UpdatePersonUseCaseFactory.create();
@@ -20,7 +20,8 @@ export class UpdatePersonController {
       address,
       birthdate: new Date(birthdate),
       biography,
-      shareableSection,
+      isOpenToWork,
+      isFreelancer
     });
 
     return reply.status(201).send(output);

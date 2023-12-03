@@ -23,21 +23,21 @@ describe('GetPersonUseCase Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
         });
-        repository.create(entity);
+        await repository.insert(entity);
         let output = await useCase.execute({
             id: entity.id,
         });
         expect(output).toStrictEqual({
             id: entity.id,
-            userId: entity.userId,
+            userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
             gender: 'male',
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
             biography: entity.biography,
-            shareableSection: entity.shareableSection,
             isOpenToWork: entity.isOpenToWork,
             isFreelancer: entity.isFreelancer,
             avatar: entity.avatar,
+            educations: undefined,
             createdAt: entity.createdAt,
             updatedAt: entity.updatedAt,
         });

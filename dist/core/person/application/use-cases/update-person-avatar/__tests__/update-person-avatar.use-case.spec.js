@@ -24,7 +24,7 @@ describe('UpdatePersonAvatar Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
         });
-        repository.create(entity);
+        repository.insert(entity);
         const output = await useCase.execute({
             id: entity.id,
             avatar: 'some avatar',
@@ -36,7 +36,6 @@ describe('UpdatePersonAvatar Unit Tests', () => {
             address: 'address',
             birthdate: new Date('2001-07-15T09:29:58.242Z'),
             biography: entity.biography,
-            shareableSection: entity.shareableSection,
             isOpenToWork: entity.isOpenToWork,
             isFreelancer: entity.isFreelancer,
             avatar: 'some avatar',

@@ -9,9 +9,9 @@ export class CreatePersonUseCase
   constructor(private personRepository: IPersonRepository) {}
 
   async execute(input: CreatePersonInput): Promise<CreatePersonOutput> {
-    const entity = new Person(input);
+    const entity = Person.create(input)
 
-    await this.personRepository.create(entity);
+    await this.personRepository.insert(entity);
 
     return PersonOutputMapper.toOutput(entity);
   }

@@ -34,7 +34,7 @@ describe('UpdateEducationUseCase Unit Tests', () => {
       startDate: new Date('2023-07-15T09:29:58.242Z'),
       description: 'some description',
     });
-    repository.create(education);
+    repository.insert(education);
 
     const output = await useCase.execute({
       id: education.id,
@@ -67,7 +67,7 @@ describe('UpdateEducationUseCase Unit Tests', () => {
       isCurrent: false,
       isVerified: false,
     });
-    repository.create(education);
+    repository.insert(education);
 
     const output = await useCase.execute({
       id: education.id,

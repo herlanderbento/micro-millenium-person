@@ -99,27 +99,6 @@ describe("PersonValidator Tests", () => {
     });
   });
 
-  test("invalidation cases for shareableSection field", () => {
-    expect({
-      validator,
-      data: { shareableSection: 5 },
-    }).containsErrorMessages({
-      shareableSection: [
-        "shareableSection must be a string",
-        "shareableSection must be shorter than or equal to 255 characters",
-      ],
-    });
-
-    expect({
-      validator,
-      data: { shareableSection: "some shareableSection".repeat(256) },
-    }).containsErrorMessages({
-      shareableSection: [
-        "shareableSection must be shorter than or equal to 255 characters",
-      ],
-    });
-  });
-
   test("invalidation cases for biography field", () => {
     expect({
       validator,
@@ -173,7 +152,6 @@ describe("PersonValidator Tests", () => {
       gender: GenderType;
       biography?: string;
       address: string;
-      shareableSection?: string;
       birthdate: Date;
       isOpenToWork?: boolean;
       isFreelancer?: boolean;
@@ -191,7 +169,6 @@ describe("PersonValidator Tests", () => {
         gender: "male",
         biography: undefined,
         address: "address",
-        shareableSection: undefined,
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         avatar: undefined,
       },
@@ -200,7 +177,6 @@ describe("PersonValidator Tests", () => {
         gender: "male",
         biography: null,
         address: "address",
-        shareableSection: null,
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         isOpenToWork: false,
         isFreelancer: false,
@@ -211,7 +187,6 @@ describe("PersonValidator Tests", () => {
         gender: "male",
         biography: null,
         address: "address",
-        shareableSection: null,
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         isOpenToWork: true,
         isFreelancer: true,

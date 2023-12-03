@@ -8,10 +8,10 @@ const not_found_error_1 = __importDefault(require("../errors/not-found.error"));
 const search_result_1 = require("./search-result");
 class InMemoryRepository {
     items = [];
-    async create(entity) {
+    async insert(entity) {
         this.items.push(entity);
     }
-    async bulkCreate(entities) {
+    async bulkInsert(entities) {
         this.items.push(...entities);
     }
     async findById(id) {

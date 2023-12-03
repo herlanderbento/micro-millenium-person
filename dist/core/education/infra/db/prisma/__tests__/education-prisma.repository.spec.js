@@ -17,12 +17,12 @@ describe('EducationPrismaRepository integration tests', () => {
     });
     it('should create a new entity', async () => {
         const person = domain_2.Person.fake().aPerson().build();
-        await personRepository.create(person);
+        await personRepository.insert(person);
         const education = domain_1.Education.fake()
             .aEducation()
             .withPersonId(person.id)
             .build();
-        await repository.create(education);
+        await repository.insert(education);
         const entity = await repository.findById(education.id);
         expect(entity.toJSON()).toStrictEqual(education.toJSON());
     });
@@ -30,46 +30,46 @@ describe('EducationPrismaRepository integration tests', () => {
         let entityFound = await repository.findById(new domain_3.Uuid());
         expect(entityFound).toBeNull();
         const person = domain_2.Person.fake().aPerson().build();
-        await personRepository.create(person);
+        await personRepository.insert(person);
         const entity = domain_1.Education.fake()
             .aEducation()
             .withPersonId(person.id)
             .build();
-        await repository.create(entity);
+        await repository.insert(entity);
         entityFound = await repository.findById(entity.entityId);
         expect(entity.toJSON()).toStrictEqual(entityFound.toJSON());
     });
     it('should return all educations', async () => {
         const person = domain_2.Person.fake().aPerson().build();
-        await personRepository.create(person);
+        await personRepository.insert(person);
         const entity = domain_1.Education.fake()
             .aEducation()
             .withPersonId(person.id)
             .build();
-        await repository.create(entity);
+        await repository.insert(entity);
         const entities = await repository.findAll();
         expect(entities).toHaveLength(entities.length);
     });
     it('should delete a entity', async () => {
         const person = domain_2.Person.fake().aPerson().build();
-        await personRepository.create(person);
+        await personRepository.insert(person);
         const entity = domain_1.Education.fake()
             .aEducation()
             .withPersonId(person.id)
             .build();
-        await repository.create(entity);
+        await repository.insert(entity);
         await repository.delete(entity.entityId);
         await expect(repository.findById(entity.entityId)).resolves.toBeNull();
     });
     it('should update a entity', async () => {
         const person = domain_2.Person.fake().aPerson().build();
-        await personRepository.create(person);
+        await personRepository.insert(person);
         const entity = domain_1.Education.fake()
             .aEducation()
             .withPersonId(person.id)
             .withTitle('Bachelor of Science')
             .build();
-        await repository.create(entity);
+        await repository.insert(entity);
         const updateEntity = {
             title: 'Bachelor of Science Computer.',
             educationType: 'in person',
@@ -85,7 +85,7 @@ describe('EducationPrismaRepository integration tests', () => {
     describe('search method tests', () => {
         it('should only apply paginate when other params are null', async () => {
             const person = domain_2.Person.fake().aPerson().build();
-            await personRepository.create(person);
+            await personRepository.insert(person);
             const createdAt = new Date();
             const educations = domain_1.Education.fake()
                 .theEducations(16)
@@ -93,7 +93,7 @@ describe('EducationPrismaRepository integration tests', () => {
                 .withTitle('Science')
                 .withCreatedAt(createdAt)
                 .build();
-            await repository.bulkCreate(educations);
+            await repository.bulkInsert(educations);
             const spyToEntity = jest.spyOn(education_prisma_mapper_1.EducationPrismaMapper, 'toEntity');
             const searchOutput = await repository.search(new domain_1.EducationSearchParams());
             expect(searchOutput).toBeInstanceOf(domain_1.EducationSearchResult);
@@ -117,7 +117,7 @@ describe('EducationPrismaRepository integration tests', () => {
         it('should order by createdAt DESC when search params are null', async () => {
             const createdAt = new Date();
             const person = domain_2.Person.fake().aPerson().build();
-            await personRepository.create(person);
+            await personRepository.insert(person);
             const educations = domain_1.Education.fake()
                 .theEducations(16)
                 .withPersonId(person.id)
@@ -132,7 +132,7 @@ describe('EducationPrismaRepository integration tests', () => {
         });
         it('should apply paginate and filter', async () => {
             const person = domain_2.Person.fake().aPerson().build();
-            await personRepository.create(person);
+            await personRepository.insert(person);
             const educations = [
                 domain_1.Education.fake()
                     .aEducation()
@@ -159,7 +159,7 @@ describe('EducationPrismaRepository integration tests', () => {
                     .withCreatedAt(new Date(new Date().getTime() + 1000))
                     .build(),
             ];
-            await repository.bulkCreate(educations);
+            await repository.bulkInsert(educations);
             let searchOutput = await repository.search(new domain_1.EducationSearchParams({
                 page: 1,
                 per_page: 2,

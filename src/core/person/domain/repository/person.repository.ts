@@ -12,13 +12,15 @@ export class PersonSearchParams extends SearchParams<PersonFilter> {}
 export class PersonSearchResult extends SearchResult<Person, PersonFilter> {}
 
 export interface IPersonRepository
-  extends ISearchableRepository<
+  extends Omit<ISearchableRepository<
     Person,
     PersonId,
     PersonFilter,
     PersonSearchParams,
     PersonSearchResult
-  > {}
+  >, 'findById'> {
+    findById(id: string | PersonId, unrelated?: boolean): Promise<Person>
+  }
 
 export interface IPersonRedisRepository extends IRedisRepository {}
 

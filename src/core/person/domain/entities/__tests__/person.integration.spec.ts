@@ -172,24 +172,6 @@ describe("Person Integration tests", () => {
       });
     });
 
-    it("should a invalid Person using shareableSection property", () => {
-      expect(
-        () =>
-           new Person({
-            userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
-            gender: "male",
-            address: "address",
-            birthdate: new Date("2001-07-15T09:29:58.242Z"),
-            shareableSection: 5 as any,
-          })
-      ).containsErrorMessages({
-        shareableSection: [
-          "shareableSection must be a string",
-          "shareableSection must be shorter than or equal to 255 characters",
-        ],
-      });
-    });
-
     it("should a invalid Person using avatar property", () => {
       expect(
         () =>
@@ -248,7 +230,6 @@ describe("Person Integration tests", () => {
         gender: "male",
         biography: null,
         address: "address",
-        shareableSection: null,
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         isOpenToWork: false,
         isFreelancer: false,
@@ -259,7 +240,6 @@ describe("Person Integration tests", () => {
         gender: "male",
         biography: "some biography",
         address: "address",
-        shareableSection: "some shareable sections",
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         isOpenToWork: false,
         isFreelancer: false,
@@ -272,7 +252,6 @@ describe("Person Integration tests", () => {
         gender: "male",
         biography: "some biography",
         address: "address",
-        shareableSection: "some shareable sections",
         birthdate: new Date("2001-07-15T09:29:58.242Z"),
         isOpenToWork: true,
         isFreelancer: true,
@@ -377,7 +356,7 @@ describe("Person Integration tests", () => {
       });
     });
 
-    it("should a invalid Person using biography and shareableSection property", () => {
+    it("should a invalid Person using biography property", () => {
       const person =  new Person({
         userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
         gender: "male",
@@ -390,16 +369,11 @@ describe("Person Integration tests", () => {
           address: "address",
           birthdate: new Date("2001-07-15T09:29:58.242Z"),
           biography: "some biography",
-          shareableSection: "some shareable section",
         })
       ).containsErrorMessages({
         biography: [
           "biography must be a string",
           "biography must be shorter than or equal to 255 characters",
-        ],
-        shareableSection: [
-          "shareableSection must be a string",
-          "shareableSection must be shorter than or equal to 255 characters",
         ],
       });
       expect(() =>
@@ -408,14 +382,10 @@ describe("Person Integration tests", () => {
           address: "address",
           birthdate: new Date("2001-07-15T09:29:58.242Z"),
           biography: "some biography".repeat(256),
-          shareableSection: "some shareable section".repeat(256),
         })
       ).containsErrorMessages({
         biography: [
           "biography must be shorter than or equal to 255 characters",
-        ],
-        shareableSection: [
-          "shareableSection must be shorter than or equal to 255 characters",
         ],
       });
     });

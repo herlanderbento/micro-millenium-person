@@ -20,7 +20,6 @@ describe("Person unit tests", () => {
             gender: "male",
             biography: null,
             address: "address",
-            shareableSection: null,
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             isOpenToWork: true,
             isFreelancer: true,
@@ -35,7 +34,6 @@ describe("Person unit tests", () => {
             gender: "male",
             biography: "some biography",
             address: "address",
-            shareableSection: "some shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             isOpenToWork: false,
             isFreelancer: false,
@@ -48,7 +46,6 @@ describe("Person unit tests", () => {
             gender: "male",
             biography: "some biography",
             address: "address",
-            shareableSection: "some shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             isOpenToWork: false,
             isFreelancer: false,
@@ -74,14 +71,12 @@ describe("Person unit tests", () => {
             userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
             gender: "male",
             address: "address",
-            shareableSection: "other shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
         });
         expect(person.props).toMatchObject({
             userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
             gender: "male",
             address: "address",
-            shareableSection: "other shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
         });
         person = new person_entity_1.Person({
@@ -298,35 +293,6 @@ describe("Person unit tests", () => {
         person["biography"] = null;
         expect(person.biography).toBeNull();
     });
-    test("getter and setter of shareableSection field", () => {
-        let person = new person_entity_1.Person({
-            userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
-            gender: "male",
-            address: "address",
-            birthdate: new Date("2002-07-15T09:29:58.242Z"),
-        });
-        expect(person.shareableSection).toBeNull();
-        person = new person_entity_1.Person({
-            userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
-            gender: "male",
-            address: "address",
-            birthdate: new Date("2002-07-15T09:29:58.242Z"),
-            shareableSection: "some shareableSection",
-        });
-        expect(person.shareableSection).toBe("some shareableSection");
-        person = new person_entity_1.Person({
-            userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
-            gender: "male",
-            address: "address",
-            birthdate: new Date("2002-07-15T09:29:58.242Z"),
-        });
-        person["shareableSection"] = "other shareableSection";
-        expect(person.shareableSection).toBe("other shareableSection");
-        person["shareableSection"] = undefined;
-        expect(person.shareableSection).toBeNull();
-        person["shareableSection"] = null;
-        expect(person.shareableSection).toBeNull();
-    });
     test("getter and setter of avatar field", () => {
         let person = new person_entity_1.Person({
             userId: "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d",
@@ -469,18 +435,17 @@ describe("Person unit tests", () => {
             address: "luanda",
             birthdate: new Date("2002-07-15T09:29:58.242Z"),
         });
-        person.update({
+        const input = {
             gender: "male",
             address: "toronto",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             biography: "some biography",
-            shareableSection: "some shareable section",
-        });
+        };
+        person.update(input);
         expect(person.gender).toBe("male");
         expect(person.address).toBe("toronto");
         expect(person.birthdate).toStrictEqual(new Date("2001-07-15T09:29:58.242Z"));
         expect(person.biography).toStrictEqual("some biography");
-        expect(person.shareableSection).toStrictEqual("some shareable section");
     });
     it("should update avatar person", () => {
         const person = new person_entity_1.Person({
@@ -489,7 +454,10 @@ describe("Person unit tests", () => {
             address: "toronto",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
         });
-        person.updateAvatar("some avatar");
+        const input = {
+            avatar: "some avatar",
+        };
+        person.update(input);
         expect(person.gender).toBe("male");
         expect(person.address).toBe("toronto");
         expect(person.birthdate).toStrictEqual(new Date("2001-07-15T09:29:58.242Z"));
@@ -547,7 +515,6 @@ describe("Person unit tests", () => {
             gender: "male",
             biography: "some biography",
             address: "address",
-            shareableSection: "some shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             isOpenToWork: false,
             isFreelancer: false,
@@ -560,7 +527,6 @@ describe("Person unit tests", () => {
             gender: "male",
             biography: "some biography",
             address: "address",
-            shareableSection: "some shareable sections",
             birthdate: new Date("2001-07-15T09:29:58.242Z"),
             isOpenToWork: false,
             isFreelancer: false,
