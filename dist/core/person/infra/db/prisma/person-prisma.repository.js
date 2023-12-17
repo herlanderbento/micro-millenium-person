@@ -24,19 +24,20 @@ class PersonPrismaRepository {
             where: { id: _id },
         };
         if (related === true) {
-            const model = await prisma_client_1.prismaClient.person.findUnique(baseQuery);
-            return model ? person_prisma_mapper_1.PersonPrismaMapper.toEntity(model) : null;
+            const model = await prisma_client_1.prismaClient.person.findUnique({
+                ...baseQuery,
+                include: { educations: true },
+            });
+            if (!model) {
+                throw new domain_2.NotFoundError(`Entity Not Found using ID ${_id}`);
+            }
+            return person_prisma_mapper_1.PersonPrismaMapper.toAllModel(model);
         }
-        const model = await prisma_client_1.prismaClient.person.findUnique({
-            ...baseQuery,
-            include: {
-                educations: true,
-            },
-        });
+        const model = await prisma_client_1.prismaClient.person.findUnique(baseQuery);
         if (!model) {
             throw new domain_2.NotFoundError(`Entity Not Found using ID ${_id}`);
         }
-        return person_prisma_mapper_1.PersonPrismaMapper.toAllModel(model);
+        return model ? person_prisma_mapper_1.PersonPrismaMapper.toEntity(model) : null;
     }
     async update(entity) {
         const model = await prisma_client_1.prismaClient.person.update({

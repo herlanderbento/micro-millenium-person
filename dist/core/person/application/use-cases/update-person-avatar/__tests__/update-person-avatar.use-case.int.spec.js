@@ -11,14 +11,15 @@ describe('UpdatePersonAvatar Unit Tests', () => {
         repository = new infra_1.PersonPrismaRepository();
         useCase = new update_person_avatar_use_case_1.UpdatePersonAvatarUseCase(repository);
     });
-    it('should throws error when entity not found', async () => {
-        await expect(() => useCase.execute({
+    it('should throw error when entity not found', async () => {
+        const input = {
             id: 'fake id',
             avatar: 'some avatar',
-        })).rejects.toThrow(new domain_1.NotFoundError(`Entity Not Found using ID fake id`));
+        };
+        await expect(() => useCase.execute(input)).rejects.toThrow(new domain_1.NotFoundError(`Entity Not Found using ID fake id`));
     });
     it('should update a person avatar', async () => {
-        const entity = new domain_2.Person({
+        const entity = domain_2.Person.create({
             userId: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
             gender: 'male',
             address: 'address',

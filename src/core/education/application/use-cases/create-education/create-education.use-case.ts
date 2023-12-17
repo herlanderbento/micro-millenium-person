@@ -14,7 +14,6 @@ export class CreateEducationUseCase
 
   async execute(input: CreateEducationInput): Promise<CreateEducationOutput> {
     await this.personRepository.findById(input.personId);
-
     const education = Education.create(input);
 
     await this.educationRepository.insert(education);

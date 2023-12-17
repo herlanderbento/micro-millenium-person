@@ -6,7 +6,8 @@ import {
 
 export class DeleteEducationController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as DeleteEducationInput;
+    //@ts-ignore
+    const { id } = request.params;
 
     const deleteEducationUseCase = DeleteEducationUseCaseFactory.create();
 

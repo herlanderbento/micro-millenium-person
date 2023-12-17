@@ -161,7 +161,7 @@ export class Education extends AggregateRoot<
     Object.assign(this.props, { ...props });
   }
 
-  static create(props: EducationCreateCommand) {
+  static create(props: EducationCreateCommand): Education {
     const education = new Education(props);
     Education.validate(props);
     return education;

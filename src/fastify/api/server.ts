@@ -2,8 +2,7 @@ import { app } from './fastify';
 
 app
   .listen({
-    // host: "0.0.0.0",
-    port: 4001,
+    port: Number(process.env.PORT),
   })
   .then(() => {
     console.log('🚀 HTTP Server Running!');

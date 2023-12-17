@@ -17,8 +17,11 @@ import {
   updateAvatarPersonSchema,
   updatePersonSchema,
 } from '../swagger';
+import { CreatePersonUseCase } from '../../../core/person/application';
+import { PersonPrismaRepository } from '../../../core/person/infra';
 
-const createPersonController = new CreatePersonController();
+
+const createPersonController = new CreatePersonController(new CreatePersonUseCase(new PersonPrismaRepository()));
 const listPersonsController = new ListPersonsController();
 const deletePersonController = new DeletePersonController();
 const getPersonController = new GetPersonController();

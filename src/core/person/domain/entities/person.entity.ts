@@ -113,6 +113,7 @@ export class Person extends AggregateRoot<
 
   static create(props: PersonProperties): Person {
     const person = new Person(props);
+    //Person.validate(person);
     return person;
   }
 

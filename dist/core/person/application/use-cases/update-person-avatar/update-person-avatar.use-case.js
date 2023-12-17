@@ -8,7 +8,7 @@ class UpdatePersonAvatarUseCase {
         this.personRepository = personRepository;
     }
     async execute(input) {
-        const entity = await this.personRepository.findById(input.id, true);
+        const entity = await this.personRepository.findById(input.id);
         entity.updateAvatar(input.avatar);
         await this.personRepository.update(entity);
         return common_1.PersonOutputMapper.toOutput(entity);

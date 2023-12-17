@@ -1,6 +1,4 @@
 import { z } from 'zod';
-import { CreatePersonInput } from '../../../core/person/application';
-import { values } from 'lodash';
 
 const GENDER = ['male', 'female'] as const;
 
