@@ -1,6 +1,6 @@
 <center>
   <p align="center">
-    <img src="https://nodejs.org/static/images/logo.svg" alt="Fastify Logo" width="350" />
+    <img src="https://nodejs.org/static/images/logo.svg" alt="Fastify Logo" width="250" />
   </p>  
   <br/>
   <h1 align="center">🚀 Millenium Person microservice with NodeJS</h1>
