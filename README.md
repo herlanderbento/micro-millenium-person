@@ -2,7 +2,6 @@
   <p align="center">
     <img src="https://nodejs.org/static/images/logo.svg" alt="Fastify Logo" width="250" />
   </p>  
-  <br/>
   <h1 align="center">🚀 Millenium Person microservice with NodeJS</h1>
   <p align="center">
    Microservice for the Person Administration backend<br />Using Clean Architecture, DDD, Test Pyramid and the main current market best practices.
